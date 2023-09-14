@@ -7,15 +7,19 @@ class Author(models.Model):  # объекты всех авторов
     rating = models.IntegerField(default=0, null=True)
 
     def update_rating(self):
-        rat = 0
-        if self.user is Post.user:
-            rat = Post.rating * 3
-        if self.user is Comment.user:
-            rat = sum(Comment.rating)
+        self.rating = 0
+        for i in Post.objects.all().values('user_id', 'rating'):
+            if self.user_id == i.get('user_id'):
+                self.rating += i.get('rating') * 3 if self.rating > 0 else (self.rating + 1) * i.get('rating') * 3
 
-        self.rating = rat
+        for i in Comment.objects.all().values('rating', 'post_id', 'user_id'):
+            if self.user_id == i.get('user_id'):
+                self.rating += i.get('rating')
+
+        return self.rating
 
 
+# Нужно вынести в отдельный файл
 SPOTS = 'SP'
 POLICY = 'PO'
 EDUCATION = 'ED'
@@ -41,6 +45,7 @@ class Category(models.Model):  # Категории новостей/стате�
     title = models.CharField(max_length=2, choices=CATEGORY, default=OTHER, unique=True)
 
 
+# Нужно вынести в отдельный файл
 NEWS = 'NW'
 ARTICLE = 'AR'
 TYPE_ARTICLE = [(NEWS, 'Новость'), (ARTICLE, 'Статья')]
@@ -58,15 +63,19 @@ class Post(models.Model):  # содержит в себе статьи и нов
     def like(self):
         self.rating += 1
         self.save()
-        # return self.rating
 
     def dislike(self):
         self.rating -= 1
         self.save()
-        # return self.rating
 
     def preview(self):
-        pass
+        prev = ''
+        for i in self.article:
+            if len(prev) <= 124:
+                prev += i
+            else:
+                break
+        return prev + ' ...'
 
 
 class PostCategory(models.Model):  # Промежуточная модель для связи «многие ко многим»
@@ -76,7 +85,7 @@ class PostCategory(models.Model):  # Промежуточная модель д�
 
 class Comment(models.Model):  # комментарии к новостям/статьям
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     com_text = models.TextField()  # Текст комментария
     date_create = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField(default=0, null=True)
@@ -84,9 +93,7 @@ class Comment(models.Model):  # комментарии к новостям/ст�
     def like(self):
         self.rating += 1
         self.save()
-        # return self.rating
 
     def dislike(self):
         self.rating -= 1
         self.save()
-        # return self.rating
