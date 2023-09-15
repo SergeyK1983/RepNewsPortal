@@ -105,3 +105,43 @@
 >>> post = Post.objects.get(id=1)
 >>> post.preview()
 'На Восточном экономическом форуме правительство Республики Саха (Якутия), Корпорация развития Дальнего Востока и Арктики (КРД ...'
+
+>>> ath = Author.objects.get(user_id=2)
+>>> ath.user
+<User: Serg>
+>>> ath.update_rating()
+37
+>>> ath1 = Author.objects.get(user_id=3) 
+>>> ath1.user                       
+<User: Znatok>
+>>> ath1.update_rating()            
+20
+
+									ЗАДАНИЯ ПО МОДУЛЮ!
+9)
+>>> Author.objects.all().order_by('-rating').values('user', 'rating')[:1]  // Автор с максимальным рейтингом
+<QuerySet [{'user': 2, 'rating': 37}]>
+>>> User.objects.filter(id = 2).values('username')
+<QuerySet [{'username': 'Serg'}]>  // по другому у меня не получается.
+
+>>> a1 = Author.objects.select_related('user')
+
+10)
+>>> Post.objects.filter().order_by('-rating').values('title', 'rating')[:1]  // Лучшая статья по рейтингу, заголовок
+<QuerySet [{'title': 'В Якутии построят комплекс для производства жидкого гелия', 'rating': 6}]>
+
+>>> Post.objects.filter(rating = 6).order_by('-rating').values('date_create', 'user_id')  // время создания (в человеческий вид не получилось), автор
+<QuerySet [{'date_create': datetime.datetime(2023, 9, 14, 7, 23, 31, 983431, tzinfo=datetime.timezone.utc), 'user_id': 2}]>
+
+>>> User.objects.filter(id = 2).values('username')  // имя автора статьи
+<QuerySet [{'username': 'Serg'}]>  // по другому у меня не получается.
+
+>>> Post.objects.filter(rating = 6).get().preview()  //превью
+'На Восточном экономическом форуме правительство Республики Саха (Якутия), Корпорация развития Дальнего Востока и Арктики (КРД ...'
+
+11)
+>>> Comment.objects.filter(post__rating=6).order_by('date_create').values('date_create','rating', 'user_id', 'com_text') // комментарии
+
+<QuerySet [{'date_create': datetime.datetime(2023, 9, 14, 11, 27, 22, 865556, tzinfo=datetime.timezone.utc), 'rating': 3, 'user_id': 2, 'com_text': 'Скопировано с новостного канала.'}, {'date_create': datetime.datetime(2023, 9, 
+14, 11, 29, 53, 745069, tzinfo=datetime.timezone.utc), 'rating': -1, 'user_id': 3, 'com_text': 'Фигню какую-то постишь!'}, {'date_create': datetime.datetime(2023, 9, 14, 11, 46, 16, 535530, tzinfo=datetime.timezone.utc), 'rating
+': 0, 'user_id': None, 'com_text': 'Гелий - это круто! Автор жжет!'}]>

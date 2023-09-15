@@ -12,11 +12,18 @@ class Author(models.Model):  # объекты всех авторов
             if self.user_id == i.get('user_id'):
                 self.rating += i.get('rating') * 3 if self.rating > 0 else (self.rating + 1) * i.get('rating') * 3
 
-        for i in Comment.objects.all().values('rating', 'post_id', 'user_id'):
+        for i in Comment.objects.all().values('rating', 'user_id'):
             if self.user_id == i.get('user_id'):
                 self.rating += i.get('rating')
 
-        return self.rating
+        post_user = Post.objects.filter(user_id=self.user_id).values("id")
+        # Сдается, что это можно было сделать изящней
+        for i in Comment.objects.all().values('rating', 'post_id'):
+            for j in post_user:
+                if j.get('id') == i.get('post_id'):
+                    self.rating += i.get('rating')
+
+        self.save()
 
 
 # Нужно вынести в отдельный файл

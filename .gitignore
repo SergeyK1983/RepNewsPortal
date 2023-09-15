@@ -1,4 +1,5 @@
 .idea
+/sql
 БД postgreSQL подключение.txt
 superuser.txt
 temp.py
