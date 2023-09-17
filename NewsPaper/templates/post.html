@@ -1,0 +1,12 @@
+<!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
+{% extends 'flatpages/default.html' %}
+
+<!-- Название у нас будет -->
+{% block title %}
+Новость
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим -->
+{% block content %}
+<h1>{{ post }}</h1>   <!-- Должно сходиться с context_object_name во views -->
+{% endblock content %}
