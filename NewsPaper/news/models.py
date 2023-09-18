@@ -84,6 +84,9 @@ class Post(models.Model):  # содержит в себе статьи и нов
                 break
         return prev + ' ...'
 
+    def __str__(self):
+        return f'{self.title}: {self.id}'  # : {self.article}'
+
 
 class PostCategory(models.Model):  # Промежуточная модель для связи «многие ко многим»
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
