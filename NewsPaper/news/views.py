@@ -22,7 +22,7 @@ class NewsList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)  # Вызываем метод из родительского класса MultipleObjectMixin
         # К словарю добавим текущую дату в ключ 'time_now'.
-        context['time_now'] = datetime.utcnow()
+        context['time_now'] = datetime.utcnow()  # utcnow()
         # Добавим ещё одну пустую переменную, чтобы на её примере рассмотреть работу ещё одного фильтра.
         context['next_sale'] = None  # Если написать None, то сработает это: <h3> {{ next_sale|default_if_none:"Чуть позже сообщим о распродаже!" }} </h3>
         return context

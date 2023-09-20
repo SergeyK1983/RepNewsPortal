@@ -1,6 +1,8 @@
 <!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
 {% extends 'flatpages/default.html' %}
 
+{% load app_filters %}
+
 <!-- Название у нас будет -->
 {% block title %}
 Новости/Статьи
@@ -28,9 +30,9 @@
             </tr>
             {% for post in news %}
                 <tr>
-                    <td align="left" valign="top" height="80"> {{post.title}} </td>
-                    <td align="center" valign="top"> {{post.date_create|date:'d.m.Y H:i:s' }} </td>
-                    <td align="left" valign="top"> {{post.article|truncatewords:20 }} </td>
+                    <td align="left" valign="top" height="80"> {{post.title|censor}} </td>
+                    <td align="center" valign="top"> {{post.date_create|date:'d.m.Y H:i:s'}} </td>  <!-- привести к нужному часовому поясу -->
+                    <td align="left" valign="top"> {{post.article|truncatewords:20|censor}} </td>
                 </tr>
             {% endfor %}
         </table>

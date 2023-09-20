@@ -1,6 +1,8 @@
 <!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
 {% extends 'flatpages/default.html' %}
 
+{% load app_filters %}
+
 <!-- Название у нас будет -->
 {% block title %}
 Новость
@@ -16,7 +18,7 @@
                 <td style="font-size:22px" valign="top" width="300" height="80">
                     <strong> Заголовок </strong>
                 </td>
-                <td align="left" valign="top" height="80"> {{post.title}} </td>
+                <td align="left" valign="top" height="80"> {{post.title|censor}} </td>
             </tr>
             <tr>
                 <td style="font-size:22px" valign="top" width="250" height="80">
@@ -28,7 +30,7 @@
                 <td style="font-size:22px" valign="top">
                     <strong> Содержание </strong>
                 </td>
-                <td align="left" valign="top"> {{post.article}} </td>
+                <td align="left" valign="top"> {{post.article|censor}} </td>
             </tr>
         </table>
     {% else %}
