@@ -63,7 +63,7 @@ class Post(models.Model):  # содержит в себе статьи и нов
     type_article = models.CharField(max_length=2, choices=TYPE_ARTICLE, default=ARTICLE)  # поле с выбором статья или новость, по умолчанию - статья
     date_create = models.DateTimeField(auto_now_add=True)
     category = models.ManyToManyField(Category, through='PostCategory')  # Связь с категориями
-    title = models.CharField()  # Заголовок
+    title = models.CharField(max_length=200)  # Заголовок
     article = models.TextField()  # Текст статьи/новости
     rating = models.IntegerField(default=0, null=True)
 
@@ -76,13 +76,8 @@ class Post(models.Model):  # содержит в себе статьи и нов
         self.save()
 
     def preview(self):
-        prev = ''
-        for i in self.article:
-            if len(prev) <= 124:
-                prev += i
-            else:
-                break
-        return prev + ' ...'
+        pr = self.article[:125]
+        return pr + ' ...'
 
     def __str__(self):
         return f'{self.title}: {self.id}'  # : {self.article}'

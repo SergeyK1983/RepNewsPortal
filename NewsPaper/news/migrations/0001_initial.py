@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('type_article', models.CharField(choices=[('NW', 'Новость'), ('AR', 'Статья')], default='AR', max_length=2)),
                 ('date_create', models.DateTimeField(auto_now_add=True)),
-                ('title', models.CharField()),
+                ('title', models.CharField(max_length=200)),
                 ('article', models.TextField()),
                 ('rating', models.IntegerField(default=0, null=True)),
             ],

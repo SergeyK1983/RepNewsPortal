@@ -84,22 +84,22 @@ WSGI_APPLICATION = 'NewsPaper.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
+# Если вы попытаетесь получить доступ к базе данных, которую вы не определили в своих DATABASES настройках,
+# Django вызовет django.utils.connection.ConnectionDoesNotExist исключение
+# ./manage.py migrate --database=users
 DATABASES = {
-    'default': {
+    'users': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'db.newspaper',
         'USER': 'SergNews',
         'PASSWORD': 'qwer',
         'HOST': 'localhost',
         'PORT': '5433'
-    }
+    },
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+     }
 }
 
 
