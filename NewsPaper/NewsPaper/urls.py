@@ -16,9 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from news.views import index  # Выбрана рабочая папка NewsPaper в меню папки: "Mark Directory as"
+from news.views import page_not_found
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('news/', include('news.urls')),
+    path('', index, name="home"),
+    # path('', Index.as_view(), name="home"),
 ]
+
+handler404 = page_not_found

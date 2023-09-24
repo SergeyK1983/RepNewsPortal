@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-yfzrw7x^)33qy2t&jd#!ei#g7(+2l5abd_-z9vz%l(1&ux@@d%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True  # В боевом режиме поставить на False, чтобы не видеть отладочную инфу при ошибках
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']  # Тут наш сайт: www:something.ru или IP адрес, пока ХЗ.
 
 
 # Application definition
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     'django.contrib.sites',  # Для простых страничек
     'django.contrib.flatpages',  # Для простых страничек
+
+    'django_filters',  # django фильтры, из добавленной библиотеки ‘django_filters’
 
     'news',
     'accounts',

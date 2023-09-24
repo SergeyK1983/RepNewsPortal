@@ -2,7 +2,21 @@ from datetime import datetime
 
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+from django.http import HttpResponse, HttpResponseNotFound
 from .models import Post
+import os
+from pathlib import Path
+
+
+def index(request):  # HttpRequest
+    index_dir = os.path.join(Path(__file__).resolve().parent.parent, 'templates')
+    now = datetime.now()
+    html = "<html><body>It is now %s.</body></html>" % now   # os.path.join(index_dir, 'index.html')
+    return HttpResponse("/news")
+
+
+def page_not_found(request, exception):
+    return HttpResponseNotFound('<h1 align="center"> Страница не найдена </h1>')
 
 
 class NewsList(ListView):
