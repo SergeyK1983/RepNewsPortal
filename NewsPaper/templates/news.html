@@ -33,7 +33,7 @@
                     <td align="left" valign="top" height="80"> {{post.title|censor}} </td>
                     <td align="center" valign="top"> {{post.date_create|date:'d.m.Y H:i:s'}} </td>  <!-- привести к нужному часовому поясу -->
                     <td align="left" valign="top"> {{post.article|truncatewords:20|censor}}<br>
-                        <p><a href="{{post.id}}" target="_blank"> Читать полностью ... </a></p>
+                        <p><a href="{{post.id}}" > Читать полностью ... </a></p> <!-- Если добавить target="_blank", то будет открываться в новом окне -->
                     </td>
                 </tr>
             {% endfor %}

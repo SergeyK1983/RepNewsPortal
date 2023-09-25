@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from news.views import index  # Выбрана рабочая папка NewsPaper в меню папки: "Mark Directory as"
+from .views import index  # Выбрана рабочая папка NewsPaper в меню папки: "Mark Directory as"
 from news.views import page_not_found
 
 urlpatterns = [
