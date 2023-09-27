@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.http import HttpResponse, HttpResponseNotFound
 from .models import Post
+from .filters import NewsFilter
 import os
 from pathlib import Path
 
@@ -23,6 +24,7 @@ class NewsList(ListView):
     # Это имя списка, в котором будут лежать все объекты.
     # Его надо указать, чтобы обратиться к списку объектов в html-шаблоне.
     context_object_name = 'news'
+    paginate_by = 10
 
     # Метод get_context_data позволяет нам изменить набор данных,
     # который будет передан в шаблон.
@@ -47,5 +49,30 @@ class PostDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['time_now'] = datetime.utcnow()
-        context['next_sale'] = None
         return context
+
+
+class SearchNewsList(ListView):
+    model = Post
+    ordering = '-date_create'
+    template_name = 'search.html'
+    context_object_name = 'search'
+    paginate_by = 5
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['time_now'] = datetime.utcnow()
+        context['filterset'] = self.filterset  # Добавляем в контекст объект фильтрации.
+        return context
+
+    def get_queryset(self):
+        # Получаем обычный запрос
+        queryset = super().get_queryset()
+        # Используем наш класс фильтрации.
+        # self.request.GET содержит объект QueryDict, который мы рассматривали
+        # в этом юните ранее.
+        # Сохраняем нашу фильтрацию в объекте класса,
+        # чтобы потом добавить в контекст и использовать в шаблоне.
+        self.filterset = NewsFilter(self.request.GET, queryset)
+        # Возвращаем из функции отфильтрованный список товаров
+        return self.filterset.qs

@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Author(models.Model):  # объекты всех авторов
+class Author(models.Model):  # объекты всех авторовuse
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0, null=True)
 
@@ -24,6 +24,9 @@ class Author(models.Model):  # объекты всех авторов
                     self.rating += i.get('rating')
 
         self.save()
+
+    def __str__(self):
+        return f"{self.user}"
 
 
 # Нужно вынести в отдельный файл
@@ -51,6 +54,9 @@ CATEGORY = [
 class Category(models.Model):  # Категории новостей/статей — темы
     title = models.CharField(max_length=2, choices=CATEGORY, default=OTHER, unique=True)
 
+    def __str__(self):
+        return f"{self.title}"
+
 
 # Нужно вынести в отдельный файл
 NEWS = 'NW'
@@ -76,7 +82,7 @@ class Post(models.Model):  # содержит в себе статьи и нов
         self.save()
 
     def preview(self):
-        pr = self.article[:125]
+        pr = self.article[:124]
         return pr + ' ...'
 
     def __str__(self):

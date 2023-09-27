@@ -1,6 +1,6 @@
 from django.urls import path
 # Импортируем созданное нами представление
-from .views import NewsList, PostDetail
+from .views import NewsList, PostDetail, SearchNewsList
 
 
 urlpatterns = [
@@ -13,5 +13,7 @@ urlpatterns = [
    path('', NewsList.as_view(), name='news'),
    # pk — это первичный ключ товара, который будет выводиться у нас в шаблон
    # int — указывает на то, что принимаются только целочисленные значения
-   path('<int:id>', PostDetail.as_view()),
+   path('<int:id>', PostDetail.as_view(), name='post'),
+   path('search/', SearchNewsList.as_view(), name='news_search'),
+
 ]
