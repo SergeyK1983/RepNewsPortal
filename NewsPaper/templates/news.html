@@ -14,6 +14,9 @@
 {% block content %}
     <h3> {{ time_now|date:'d F Y' }}</h3>
     <h4> {{ next_sale|default_if_none:"Свежие новости за последний час!" }} </h4>
+    <p align="right"> Новость:
+        <a href=" {{news_create}} " > создать </a>
+    </p>
     <h1 align="left"> Наши новости </h1>
     <p align="left"> Публикаций на странице: {{news|length}} шт. </p>
     <hr>

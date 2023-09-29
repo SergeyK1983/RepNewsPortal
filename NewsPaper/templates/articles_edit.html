@@ -1,0 +1,26 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Форма записи
+{% endblock title %}
+
+{% block content %}
+<h3> Публикация/редактирование</h3>
+<p style="font-size:22px"> статьи </p>
+<hr>
+{% if object.type_article == "AR" or object.type_article is None %}
+    <div align="left">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Save" />
+        </form>
+    </div>
+{% else %}
+    <div align="left">
+        <ul>
+            <li> Новости редактируются на другой странице </li>
+        </ul>
+    </div>
+{% endif %}
+{% endblock content %}

@@ -1,10 +1,12 @@
 from datetime import datetime
 
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy, reverse
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseNotFound
 from .models import Post
 from .filters import NewsFilter
+from .forms import NewsForm
 import os
 from pathlib import Path
 
@@ -76,3 +78,49 @@ class SearchNewsList(ListView):
         self.filterset = NewsFilter(self.request.GET, queryset)
         # Возвращаем из функции отфильтрованный список товаров
         return self.filterset.qs
+
+
+class NewsCreate(CreateView):
+    form_class = NewsForm
+    template_name = 'news_edit.html'
+    model = Post
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.type_article = 'NW'
+        return super().form_valid(form)
+
+
+class ArticlesCreate(CreateView):
+    form_class = NewsForm
+    template_name = 'articles_edit.html'
+    model = Post
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.type_article = 'AR'
+        return super().form_valid(form)
+
+
+class NewsUpdate(UpdateView):
+    form_class = NewsForm
+    template_name = 'news_edit.html'
+    model = Post
+
+
+class ArticlesUpdate(UpdateView):
+    form_class = NewsForm
+    template_name = 'articles_edit.html'
+    model = Post
+
+
+class NewsDelete(DeleteView):
+    model = Post
+    template_name = 'news_delete.html'
+    success_url = reverse_lazy('news')
+
+
+class ArticlesDelete(DeleteView):
+    model = Post
+    template_name = 'articles_delete.html'
+    success_url = reverse_lazy('news')

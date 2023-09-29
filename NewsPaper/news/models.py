@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class Author(models.Model):  # объекты всех авторовuse
@@ -87,6 +88,9 @@ class Post(models.Model):  # содержит в себе статьи и нов
 
     def __str__(self):
         return f'{self.title}: {self.id}'  # : {self.article}'
+
+    def get_absolute_url(self):
+        return reverse('post', args=[str(self.id)])
 
 
 class PostCategory(models.Model):  # Промежуточная модель для связи «многие ко многим»

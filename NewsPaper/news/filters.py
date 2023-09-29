@@ -22,7 +22,7 @@ class NewsFilter(FilterSet):
     # Решение в Пачке подсмотрел, сам мы не допер.
     date_range = DateFilter(
         field_name='date_create',
-        label='Не старше чем:',
+        label='Не позднее чем:',
         lookup_expr='gt',
         widget=DateInput(attrs={'type': 'date'})
     )
