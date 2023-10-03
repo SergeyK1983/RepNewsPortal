@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseNotFound
 from .models import Post
@@ -12,7 +13,11 @@ from pathlib import Path
 
 
 def page_not_found(request, exception):
-    return HttpResponseNotFound('<h1 align="center"> Страница не найдена </h1>')
+    return HttpResponseNotFound('<h1 align="center"> Ошибка 404 <br> Страница не найдена </h1>')
+
+
+def user_not_authenticated(request, exception):
+    return HttpResponseNotFound('<h1 align="center"> Ошибка 403 <br> Пользователь не авторизирован </h1>')
 
 
 class NewsList(ListView):
@@ -22,7 +27,7 @@ class NewsList(ListView):
     ordering = '-date_create'
     # Указываем имя шаблона, в котором будут все инструкции о том,
     # как именно пользователю должны быть показаны наши объекты
-    template_name = 'news.html'
+    template_name = 'news/news.html'
     # Это имя списка, в котором будут лежать все объекты.
     # Его надо указать, чтобы обратиться к списку объектов в html-шаблоне.
     context_object_name = 'news'
@@ -43,7 +48,7 @@ class PostDetail(DetailView):
     # Модель всё та же, но мы хотим получать информацию по отдельному товару
     model = Post
     # Используем другой шаблон — product.html
-    template_name = 'post.html'
+    template_name = 'news/post.html'
     # Название объекта, в котором будет выбранный пользователем продукт
     context_object_name = 'post'
     pk_url_kwarg = 'id'
@@ -57,7 +62,7 @@ class PostDetail(DetailView):
 class SearchNewsList(ListView):
     model = Post
     ordering = '-date_create'
-    template_name = 'search.html'
+    template_name = 'news/search.html'
     context_object_name = 'search'
     paginate_by = 5
 
@@ -82,7 +87,7 @@ class SearchNewsList(ListView):
 
 class NewsCreate(CreateView):
     form_class = NewsForm
-    template_name = 'news_edit.html'
+    template_name = 'news/news_edit.html'
     model = Post
 
     def form_valid(self, form):
@@ -93,7 +98,7 @@ class NewsCreate(CreateView):
 
 class ArticlesCreate(CreateView):
     form_class = NewsForm
-    template_name = 'articles_edit.html'
+    template_name = 'news/articles_edit.html'
     model = Post
 
     def form_valid(self, form):
@@ -102,25 +107,31 @@ class ArticlesCreate(CreateView):
         return super().form_valid(form)
 
 
-class NewsUpdate(UpdateView):
+class NewsUpdate(LoginRequiredMixin, UpdateView):
+    raise_exception = True
+    # login_url = "/login/"
+    redirect_field_name = "redirect_to"
     form_class = NewsForm
-    template_name = 'news_edit.html'
+    template_name = 'news/news_edit.html'
     model = Post
 
 
-class ArticlesUpdate(UpdateView):
+class ArticlesUpdate(LoginRequiredMixin, UpdateView):
+    raise_exception = True
+    # login_url = "/login/"
+    redirect_field_name = "redirect_to"
     form_class = NewsForm
-    template_name = 'articles_edit.html'
+    template_name = 'news/articles_edit.html'
     model = Post
 
 
 class NewsDelete(DeleteView):
     model = Post
-    template_name = 'news_delete.html'
+    template_name = 'news/news_delete.html'
     success_url = reverse_lazy('news')
 
 
 class ArticlesDelete(DeleteView):
     model = Post
-    template_name = 'articles_delete.html'
+    template_name = 'news/articles_delete.html'
     success_url = reverse_lazy('news')

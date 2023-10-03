@@ -39,12 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # для создания аккаунта
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.yandex',  # http://127.0.0.1:8000/accounts/yandex/login/callback/
+
     'django.contrib.sites',  # Для простых страничек
     'django.contrib.flatpages',  # Для простых страничек
 
     'django_filters',  # django фильтры, из добавленной библиотеки ‘django_filters’
 
-    'news',
+    'news.apps.NewsConfig',
     'accounts',
 ]
 
@@ -60,6 +67,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'NewsPaper.urls'
@@ -79,6 +88,17 @@ TEMPLATES = [
         },
     },
 ]
+
+LOGIN_URL = '/accounts/login/'
+# LOGIN_REDIRECT_URL = "/account/profile/"  # "/"
+LOGIN_REDIRECT_URL = "https://oauth.yandex.ru/verification_code"  # "/"
+
+# Настройки для верификации
+ACCOUNT_EMAIL_REQUIRED = True  # email является обязательным
+ACCOUNT_UNIQUE_EMAIL = True  # email является уникальным
+ACCOUNT_USERNAME_REQUIRED = False  # username теперь необязательный.
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # аутентификация будет происходить посредством электронной почты
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # верификация почты отсутствует
 
 WSGI_APPLICATION = 'NewsPaper.wsgi.application'
 
@@ -127,23 +147,27 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'  # 'en-us' Теперь на русском языке
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False  # True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'static/'  # название папки в пути для статических файлов, префикс URL-адреса
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # путь к общей папке static, используемой реальным веб-сервером
+STATICFILES_DIRS = []  # [BASE_DIR / 'static']  # список путей для нестандартных папок static
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = [BASE_DIR / 'static']
+
+
+

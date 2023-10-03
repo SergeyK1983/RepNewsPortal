@@ -1,0 +1,40 @@
+<!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
+{% extends 'news/flatpages/default.html' %}
+
+{% load app_filters %}
+
+<!-- Название у нас будет -->
+{% block title %}
+Новость
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим -->
+{% block content %}
+    <h3>{{ time_now|date:'d F Y' }}</h3>
+    <hr>
+    {% if post %}
+        <table>
+            <tr>
+                <td style="font-size:22px" valign="top" width="300" height="80">
+                    <strong> Заголовок </strong>
+                </td>
+                <td align="left" valign="top" height="80"> {{post.title|censor}} </td>
+            </tr>
+            <tr>
+                <td style="font-size:22px" valign="top" width="250" height="80">
+                    <strong> Дата публикации </strong>
+                </td>
+                <td align="left" valign="top"> {{post.date_create|date:'d.m.Y H:i:s' }} </td>
+            </tr>
+            <tr>
+                <td style="font-size:22px" valign="top">
+                    <strong> Содержание </strong>
+                </td>
+                <td align="left" valign="top"> {{post.article|censor}} </td>
+            </tr>
+        </table>
+    {% else %}
+        Что-то пошло не так ... тут ничего нет!
+    {% endif %}
+
+{% endblock content %}

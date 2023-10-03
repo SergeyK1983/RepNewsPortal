@@ -1,0 +1,30 @@
+{% extends 'news/flatpages/default.html' %}
+
+{% block title %}
+Форма записи
+{% endblock title %}
+
+{% block content %}
+<h3> Публикация/редактирование</h3>
+<p style="font-size:22px"> новости </p>
+<hr>
+{% if object.type_article == "NW" or object.type_article is None %}
+    <div align="left">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Save" />
+        </form>
+    </div>
+{% else %}
+    <div align="left">
+        <ul>
+            <li> Статьи редактируются на другой странице </li>
+        </ul>
+    </div>
+{% endif %}
+<hr>
+{% if object.id is not None%}
+    <p align="left"><a href="{% url 'news_delete' post.id %} " > Удалить новость </a></p>
+{% endif%}
+{% endblock content %}

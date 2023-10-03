@@ -1,0 +1,19 @@
+{% extends 'news/flatpages/default.html' %}
+
+{% block content %}
+<h1>Удаление статьи</h1>
+<hr>
+{% if object.type_article == "AR" %}
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Вы действительно хотите удалить публикацию? <br><br> Заголовок: <br> "{{ object.title }}"?</p>
+    <input type="submit" value="Delete" />
+</form>
+{% else %}
+    <div align="left">
+        <ul>
+            <li> Новости редактируются на другой странице </li>
+        </ul>
+    </div>
+{% endif %}
+{% endblock content %}

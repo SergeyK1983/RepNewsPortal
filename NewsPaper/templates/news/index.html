@@ -1,0 +1,14 @@
+{% extends 'news/flatpages/default.html' %}
+
+<!-- Название у нас будет -->
+{% block title %}
+Учебная
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим все новости -->
+{% block content %}
+<h1> Новостной портал </h1>
+<p align="right"><a href="{% url 'login' %}"> Вход/Регистрация </a></p>
+<!-- <p><a href="/news/"> Читать полностью ... </a></p> -->
+
+{% endblock content %}

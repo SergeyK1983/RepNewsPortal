@@ -4,8 +4,13 @@ from django.urls import reverse
 
 
 class Author(models.Model):  # объекты всех авторовuse
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    rating = models.IntegerField(default=0, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, verbose_name='Автор')
+    rating = models.IntegerField(default=0, null=True, verbose_name='Рейтинг')
+
+    class Meta:
+        verbose_name = 'Автор'
+        verbose_name_plural = 'Авторы'
+        ordering = ['id', 'user_id']
 
     def update_rating(self):
         self.rating = 0
@@ -30,30 +35,33 @@ class Author(models.Model):  # объекты всех авторовuse
         return f"{self.user}"
 
 
-# Нужно вынести в отдельный файл
-SPOTS = 'SP'
-POLICY = 'PO'
-EDUCATION = 'ED'
-TECHNIQUE = 'TE'
-SCIENCE = 'SC'
-NATURE = 'NA'
-INTERNET = 'IN'
-OTHER = 'OT'
-
-CATEGORY = [
-    (SPOTS, 'Спорт'),
-    (POLICY, 'Политика'),
-    (EDUCATION, 'Образование'),
-    (TECHNIQUE, 'Техника'),
-    (SCIENCE, 'Наука'),
-    (NATURE, 'Природа'),
-    (INTERNET, 'Интернет'),
-    (OTHER, 'Прочее')
-]
-
-
 class Category(models.Model):  # Категории новостей/статей — темы
-    title = models.CharField(max_length=2, choices=CATEGORY, default=OTHER, unique=True)
+    SPOTS = 'SP'  # определяются внутри класса
+    POLICY = 'PO'
+    EDUCATION = 'ED'
+    TECHNIQUE = 'TE'
+    SCIENCE = 'SC'
+    NATURE = 'NA'
+    INTERNET = 'IN'
+    OTHER = 'OT'
+
+    CATEGORY = [
+        (SPOTS, 'Спорт'),
+        (POLICY, 'Политика'),
+        (EDUCATION, 'Образование'),
+        (TECHNIQUE, 'Техника'),
+        (SCIENCE, 'Наука'),
+        (NATURE, 'Природа'),
+        (INTERNET, 'Интернет'),
+        (OTHER, 'Прочее')
+    ]
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+        ordering = ['id']
+
+    title = models.CharField(max_length=2, choices=CATEGORY, default=OTHER, unique=True, verbose_name='Категории')
 
     def __str__(self):
         return f"{self.title}"
@@ -66,13 +74,18 @@ TYPE_ARTICLE = [(NEWS, 'Новость'), (ARTICLE, 'Статья')]
 
 
 class Post(models.Model):  # содержит в себе статьи и новости, которые создают пользователи
-    user = models.ForeignKey(Author, on_delete=models.CASCADE)  # Связь с автором
-    type_article = models.CharField(max_length=2, choices=TYPE_ARTICLE, default=ARTICLE)  # поле с выбором статья или новость, по умолчанию - статья
-    date_create = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(Author, to_field='user_id', on_delete=models.CASCADE, verbose_name='Автор')  # Связь с автором
+    type_article = models.CharField(max_length=2, choices=TYPE_ARTICLE, default=ARTICLE, verbose_name='Тип')  # поле с выбором статья или новость, по умолчанию - статья
+    date_create = models.DateTimeField(auto_now_add=True, verbose_name='дата создания')
     category = models.ManyToManyField(Category, through='PostCategory')  # Связь с категориями
-    title = models.CharField(max_length=200)  # Заголовок
+    title = models.CharField(max_length=200, verbose_name='заголовок')  # Заголовок
     article = models.TextField()  # Текст статьи/новости
-    rating = models.IntegerField(default=0, null=True)
+    rating = models.IntegerField(default=0, null=True, verbose_name='рейтинг')
+
+    class Meta:
+        verbose_name = 'Публикация'  # Название модели для админ панели
+        verbose_name_plural = 'Публикации'  # Тоже самое для множественного числа
+        ordering = ['id', 'user']  # Сортировка в админ панели по id и user, в список можно добавить еще параметры
 
     def like(self):
         self.rating += 1
@@ -87,7 +100,7 @@ class Post(models.Model):  # содержит в себе статьи и нов
         return pr + ' ...'
 
     def __str__(self):
-        return f'{self.title}: {self.id}'  # : {self.article}'
+        return f'{self.title[:15]}: {self.id}'  # : {self.article}'
 
     def get_absolute_url(self):
         return reverse('post', args=[str(self.id)])
@@ -97,13 +110,23 @@ class PostCategory(models.Model):  # Промежуточная модель д�
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = 'Категория публикации'
+        verbose_name_plural = 'Категории публикаций'
+        ordering = ['id', 'post_id', 'category_id']
+
 
 class Comment(models.Model):  # комментарии к новостям/статьям
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    com_text = models.TextField()  # Текст комментария
-    date_create = models.DateTimeField(auto_now_add=True)
-    rating = models.IntegerField(default=0, null=True)
+    com_text = models.TextField(verbose_name='Содержание')  # Текст комментария
+    date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
+    rating = models.IntegerField(default=0, null=True, verbose_name='Рейтинг')
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+        ordering = ['id', 'post_id', 'user_id', 'date_create']
 
     def like(self):
         self.rating += 1
