@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django import forms
 
 
+# Модель для регистрации пользователей, если использовать встроенные инструменты django
 class BaseRegisterForm(UserCreationForm):
     email = forms.EmailField(label="Email")
     first_name = forms.CharField(label="Имя")

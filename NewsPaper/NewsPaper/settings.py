@@ -73,6 +73,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'NewsPaper.urls'
 
+AUTHENTICATION_BACKENDS = [
+    # Нужно войти по имени пользователя в Django admin, независимо от `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` специфические методы аутентификации, такие как логин по электронной почте
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -89,9 +96,12 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_URL = '/accounts/login/'
-# LOGIN_REDIRECT_URL = "/account/profile/"  # "/"
-LOGIN_REDIRECT_URL = "https://oauth.yandex.ru/verification_code"  # "/"
+LOGIN_URL = '/account/login/'
+# LOGIN_REDIRECT_URL = "/account/profile/"  # Установить ссылку перехода после входа в систему
+# LOGIN_REDIRECT_URL = "https://oauth.yandex.ru/verification_code"
+# LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "login_redirect_url"
+# ACCOUNT_LOGOUT_REDIRECT_URL = "/"  # Установить ссылку перехода после выхода из системы
 
 # Настройки для верификации
 ACCOUNT_EMAIL_REQUIRED = True  # email является обязательным
@@ -99,6 +109,10 @@ ACCOUNT_UNIQUE_EMAIL = True  # email является уникальным
 ACCOUNT_USERNAME_REQUIRED = False  # username теперь необязательный.
 ACCOUNT_AUTHENTICATION_METHOD = 'email'  # аутентификация будет происходить посредством электронной почты
 ACCOUNT_EMAIL_VERIFICATION = 'none'  # верификация почты отсутствует
+
+# Чтобы allauth распознал нашу форму как ту, что должна выполняться вместо формы по умолчанию
+# нужно чтобы зарегистрированный пользователь сразу добавлялся в нужную группу
+ACCOUNT_FORMS = {'signup': 'accounts.forms.BasicSignupForm'}
 
 WSGI_APPLICATION = 'NewsPaper.wsgi.application'
 

@@ -8,7 +8,9 @@
 <!-- В контенте на странице мы выводим все новости -->
 {% block content %}
 <h1> Новостной портал </h1>
-<p align="right"><a href="{% url 'login' %}"> Вход/Регистрация </a></p>
+
+    {% include 'accounts/users_auth.html' %}
+
 <!-- <p><a href="/news/"> Читать полностью ... </a></p> -->
 
 {% endblock content %}

@@ -18,14 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import index  # Выбрана рабочая папка NewsPaper в меню папки: "Mark Directory as"
 from news.views import page_not_found, user_not_authenticated
+from accounts.views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('news/', include('news.urls')),
     path('', index, name="home"),
-    path('account/', include('accounts.urls')),
-    path('accounts/', include('allauth.urls')),
+    path('protect/', IndexView.as_view(), name="login_redirect_url"),
+    path('accounts/', include('accounts.urls')),
+    path('account/', include('allauth.urls')),  # это при помощи pip install django-allauth
     # path('', Index.as_view(), name="home"),
 ]
 

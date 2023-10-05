@@ -1,0 +1,26 @@
+
+<style> li { list-style-type: none } </style>
+<div align="right">
+    <ul>
+    {% if user.is_authenticated %}
+        <li>
+            <span style="color: rgb(156, 37, 37); font-weight: 700; text-transform: uppercase; text-decoration: none"> {{ user.username }} </span>
+        </li>
+        <li>
+            <a href="{% url 'account_logout' %}" style="color: rgb(0, 0, 0); font-weight: 700; text-transform: uppercase; text-decoration: none">
+                Выход </a>
+        </li>
+    {% else %}
+        <li>
+            <a href="{% url 'account_login' %}" style="color: rgb(0, 0, 0); font-weight: 700; text-transform: uppercase; text-decoration: none">
+                Вход
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'account_signup' %}" style="color: rgb(0, 0, 0); font-weight: 700; text-transform: uppercase; text-decoration: none">
+                Регистрация
+            </a>
+        </li>
+    {% endif %}
+    </ul>
+</div>

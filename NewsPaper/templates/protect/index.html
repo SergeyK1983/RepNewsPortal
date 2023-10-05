@@ -3,6 +3,13 @@
 {% block content %}
 <h2>Страница авторизованного пользователя {{request.user.username}}</h2>
 <div> Здесь может содержаться персональная информация для каждого пользователя </div>
+<br>
+<button> <a href="{% url 'account_logout' %}" style="color: rgb(0, 0, 0); font-weight: 700; text-transform: uppercase; text-decoration: none">
+    Выйти</a> </button>
 
-<button> <a href="sign/logout/">Выйти</a> </button>
+<br>
+{% if is_not_authors %}  <!-- кнопка не будет отображаться, если в контексте (is_not_authors, см. 'upgrade') пользователь находится уже в группе authors -->
+<button> <a href="{% url 'upgrade' %}"> Хочу стать автором!</a> </button>
+{% endif %}
+
 {% endblock %}

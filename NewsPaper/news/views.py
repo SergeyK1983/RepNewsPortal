@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseNotFound
 from .models import Post
@@ -10,6 +10,7 @@ from .filters import NewsFilter
 from .forms import NewsForm
 import os
 from pathlib import Path
+from NewsPaper.settings import LOGIN_URL
 
 
 def page_not_found(request, exception):
@@ -85,7 +86,10 @@ class SearchNewsList(ListView):
         return self.filterset.qs
 
 
-class NewsCreate(CreateView):
+class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    login_url = LOGIN_URL
+    permission_required = ('news.add_post', )  # где news - это имя приложения(app), add - это действие(action), а post - это название модели(modelname)
+
     form_class = NewsForm
     template_name = 'news/news_edit.html'
     model = Post
@@ -96,7 +100,10 @@ class NewsCreate(CreateView):
         return super().form_valid(form)
 
 
-class ArticlesCreate(CreateView):
+class ArticlesCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    login_url = LOGIN_URL
+    permission_required = ('news.add_post',)
+
     form_class = NewsForm
     template_name = 'news/articles_edit.html'
     model = Post
@@ -107,31 +114,47 @@ class ArticlesCreate(CreateView):
         return super().form_valid(form)
 
 
-class NewsUpdate(LoginRequiredMixin, UpdateView):
-    raise_exception = True
-    # login_url = "/login/"
+class NewsUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    raise_exception = False  # если сделать True, то можно использовать user_not_authenticated (написана на верху)
+    login_url = LOGIN_URL  # "/accounts/login/"
     redirect_field_name = "redirect_to"
+
+    permission_required = ('news.change_post',)  # Разрешение на редактирование группе которой позволено, https://gadjimuradov.ru/post/django-permissions-upravlenie-pravami-dostupa/
+
     form_class = NewsForm
     template_name = 'news/news_edit.html'
     model = Post
 
 
-class ArticlesUpdate(LoginRequiredMixin, UpdateView):
-    raise_exception = True
-    # login_url = "/login/"
+class ArticlesUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    raise_exception = False
+    login_url = LOGIN_URL
     redirect_field_name = "redirect_to"
+
+    permission_required = ('news.change_post',)
+
     form_class = NewsForm
     template_name = 'news/articles_edit.html'
     model = Post
 
 
-class NewsDelete(DeleteView):
+class NewsDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    raise_exception = False
+    login_url = LOGIN_URL
+
+    permission_required = ('news.delete_post',)
+
     model = Post
     template_name = 'news/news_delete.html'
     success_url = reverse_lazy('news')
 
 
-class ArticlesDelete(DeleteView):
+class ArticlesDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    raise_exception = False
+    login_url = LOGIN_URL
+
+    permission_required = ('news.delete_post',)
+
     model = Post
     template_name = 'news/articles_delete.html'
     success_url = reverse_lazy('news')
