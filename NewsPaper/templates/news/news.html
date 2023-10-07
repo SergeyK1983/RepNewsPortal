@@ -12,9 +12,11 @@
 
 <!-- В контенте на странице мы выводим все новости -->
 {% block content %}
-    <style> li { list-style-type: none } </style>  <!-- Убираем маркеры в списке -->
+    <style>
+        li { list-style-type: none }
+    </style>  <!-- Убираем маркеры в списке -->
     <h3> {{ time_now|date:'d F Y' }}</h3>
-    <h4> {{ next_sale|default_if_none:"Свежие новости за последний час!" }} </h4>
+    <h4> {{ next_sale|default_if_none:"Приветствуем на новостном портале" }} </h4>
     <div align="right">
         <ul>
             <li> Новость:<a href="{% url 'news_create' %}" style="text-decoration: none"> создать </a> </li>
@@ -41,13 +43,29 @@
                 <tr>
                     <td align="left" valign="top" height="80"> {{post.title|censor}} </td>
                     <td align="center" valign="top"> {{post.date_create|date:'d.m.Y H:i'}} </td>  <!-- привести к нужному часовому поясу -->
-                    <td align="left" valign="top"> {{post.article|truncatewords:20|censor}}<br>
-                        <p><a href="{{post.id}}" > Читать полностью ... </a></p> <!-- Если добавить target="_blank", то будет открываться в новом окне -->
-                        {% if post.type_article == 'NW' %}
-                            <p align="right"><a href="{% url 'news_update' post.id %}" style="text-decoration: none" > редактировать </a></p>
-                        {% elif post.type_article == 'AR' %}
-                            <p align="right"><a href="{% url 'articles_update' post.id %}" style="text-decoration: none" > редактировать </a></p>
-                        {% endif %}
+                    <td align="left" valign="top">
+                        <div>
+                            <p>
+                                Тип публикации: {{post.type_article}}, &nbsp; &nbsp;
+                                Категория:
+                                {% for i in post.category.all %}
+                                {{ i }},
+                                {% endfor %} &nbsp; &nbsp;
+                                Автор: {{post.user}}
+                            </p>
+                        </div>
+                        <div>
+                            {{post.article|truncatewords:20|censor}}<br>
+                            <p><a href="{{post.id}}" > Читать полностью ... </a></p> <!-- Если добавить target="_blank", то будет открываться в новом окне -->
+                            <p align="right">
+                                <span>Рейтинг: {{post.rating}} &nbsp; &nbsp; &nbsp; &nbsp;</span>
+                                {% if post.type_article == 'NW'%}
+                                <span><a href="{% url 'news_update' post.id %}" style="text-decoration: none" > редактировать </a></span>
+                                {% elif post.type_article == 'AR' %}
+                                <span><a href="{% url 'articles_update' post.id %}" style="text-decoration: none" > редактировать </a></span>
+                                {% endif %}
+                            </p>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
