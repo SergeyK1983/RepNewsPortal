@@ -10,10 +10,30 @@
 
 <!-- В контенте на странице мы выводим -->
 {% block content %}
+    <style>
+        .news_bar {
+        background: #ebe4e4;
+        }
+    </style>
     <h3>{{ time_now|date:'d F Y' }}</h3>
     <hr>
     {% if post %}
         <table>
+            <tr>
+                <td style="font-size:22px" valign="top" width="300" height="60"></td>
+                <td align="left" valign="top">
+                    <div class="news_bar">
+                        <p>
+                            Тип публикации: {{post.get_type_article_display}}, &nbsp; &nbsp;
+                            Категория:
+                            {% for i in post.category.all %}
+                            {{ i.get_title_display }},
+                            {% endfor %} &nbsp; &nbsp;
+                            Автор: {{post.user}}
+                        </p>
+                    </div>
+                </td>
+            </tr>
             <tr>
                 <td style="font-size:22px" valign="top" width="300" height="80">
                     <strong> Заголовок </strong>
@@ -30,9 +50,17 @@
                 <td style="font-size:22px" valign="top">
                     <strong> Содержание </strong>
                 </td>
-                <td align="left" valign="top"> {{post.article|censor}} </td>
+                <td align="left" valign="top"> {{post.article|censor}}</td>
             </tr>
         </table>
+        <br>
+        <hr>
+        <p align="left">
+            Подписаться на рассылку публикаций категории:
+            {% for i in post.category.all %}
+            <a href="{% url 'check_category' %}"> {{ i.get_title_display }}</a>
+            {% endfor %}
+        </p>
     {% else %}
         Что-то пошло не так ... тут ничего нет!
     {% endif %}

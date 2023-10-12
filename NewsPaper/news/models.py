@@ -67,6 +67,19 @@ class Category(models.Model):  # Категории новостей/стате�
         return f"{self.title}"
 
 
+class Subscription(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='usersabscr', verbose_name='Пользователь')
+    subscribers = models.ForeignKey(Category, to_field='title', on_delete=models.CASCADE, related_name='categories', verbose_name='Подписка', null=True)
+
+    class Meta:
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписки'
+        ordering = ['user']
+
+    def __str__(self):
+        return f'{self.user}: {self.subscribers}'
+
+
 # Нужно вынести в отдельный файл
 NEWS = 'NW'
 ARTICLE = 'AR'
@@ -103,7 +116,7 @@ class Post(models.Model):  # содержит в себе статьи и нов
         return f'{self.title[:15]}: {self.id}'  # : {self.article}'
 
     def get_absolute_url(self):
-        return reverse('post', args=[str(self.id)])
+        return reverse(viewname='post', args=[str(self.id)])
 
 
 class PostCategory(models.Model):  # Промежуточная модель для связи «многие ко многим»

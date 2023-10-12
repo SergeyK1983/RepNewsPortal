@@ -1,0 +1,30 @@
+{% extends 'news/flatpages/default.html' %}
+
+{% block title %}
+Выбрать категорию
+{% endblock title %}
+
+{% block content %}
+<style>
+p,
+label {
+  font:
+    1rem 'Fira Sans',
+    sans-serif;
+}
+input {
+  margin: 0.4rem;
+}
+</style>
+
+<div align="left">
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <p>{{ form.as_p }}</p><br>
+        <p>{{user}}</p>
+        <input type="submit" value="Подписаться">
+    </form>
+</div>
+
+{% endblock content%}

@@ -183,5 +183,11 @@ STATICFILES_DIRS = []  # [BASE_DIR / 'static']  # список путей для
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
+# Личную информацию (адрес и пароль электронной почты, секретный ключ Django и прочее)
+# можно и нужно хранить в переменных окружения и при запуске сервера загружать с помощью модуля python-dotenv
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'ssp-serg'  # ваше имя пользователя
+EMAIL_HOST_PASSWORD = ''  # пароль от почты
+EMAIL_USE_SSL = True  # Яндекс использует ssl
 

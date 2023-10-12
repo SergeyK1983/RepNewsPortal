@@ -1,13 +1,19 @@
 from datetime import datetime
 
-from django.shortcuts import render
+from django import forms
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseNotFound
-from .models import Post
+from django.core.mail import send_mail, EmailMultiAlternatives
+from .models import Post, Subscription, Category
 from .filters import NewsFilter
-from .forms import NewsForm
+from .forms import NewsForm, CategoryForm
 import os
 from pathlib import Path
 from NewsPaper.settings import LOGIN_URL
@@ -97,7 +103,51 @@ class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     def form_valid(self, form):
         post = form.save(commit=False)
         post.type_article = 'NW'
+
+        title = post.title  # request.POST['title']
+        article = post.article  # self.request.POST['article']
+        # category = post.category
+        # print(category)
+        users = Subscription.objects.filter().values('user__id')
+        users_for_email = set([i.get('user__id') for i in users])  # Перечень подписчиков
+        # mail = [User.objects.filter(id=i).values('email') for i in a]
+
+        # Рассылка подписчикам при создании новости
+        if users_for_email:
+            for i in users_for_email:
+                u_mail = User.objects.filter(id=i).values('email')
+                user_mail = User.objects.filter(id=i).values('username')[0].get('username')
+                mail = [u_mail[0].get('email')]
+
+                html_content = render_to_string(
+                    template_name='news/post_created_mail.html',
+                    context={
+                        'title': title,
+                        'article': article,
+                        'user': user_mail,
+                    }
+                )
+
+                send_mail(
+                    subject='Новостной портал',
+                    message='Вы подписаны на рассылку новостей по категории: ',
+                    from_email='ssp-serg@yandex.ru',
+                    recipient_list=mail,  # ['ksm.serg1983@gmail.com', ],
+                    html_message=html_content,
+                )
+
         return super().form_valid(form)
+
+    # def post(self, request, *args, **kwargs):
+        # msg = EmailMultiAlternatives(
+        #     subject='Новостной портал',
+        #     body='Вот новая публикация, читай не обляпайся!',
+        #     from_email='ssp-serg@yandex.ru',
+        #     to=['ksm.serg1983@gmail.com', ]
+        # )
+        # msg.attach_alternative(html_content, mimetype="text/html")  # добавляем html
+        # msg.send()  # отсылаем
+        # return redirect('news_create')
 
 
 class ArticlesCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -158,3 +208,56 @@ class ArticlesDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Post
     template_name = 'news/articles_delete.html'
     success_url = reverse_lazy('news')
+
+
+@login_required
+def check_category(request):
+    def s_mail(user_m):
+        send_mail(
+                subject='Новостной портал',
+                message='Вы подписаны на рассылку новостей по категории: ',
+                from_email='ssp-serg@yandex.ru',
+                recipient_list=[user_m.email, ]  # ['ksm.serg1983@gmail.com', ]
+            )
+
+    form = CategoryForm()
+    user = User.objects.get(username=request.user)
+    cat_list = dict(request.POST)
+    title_l = []
+    if cat_list:
+        sub = list(Subscription.objects.filter(user=user.id).values('subscribers'))
+        cat = list(Category.objects.all().values('id', 'title'))
+        title_l = []
+
+        for i in cat_list['title']:
+            for j in cat:
+                if int(i) == j['id']:
+                    title_l.append(j['title'])  # Отмеченные категории для подписки
+
+        if sub:
+            for i in title_l:  # Раз нет, то надо записать, если нет
+                if not Subscription.objects.filter(subscribers=i).exists():  # Записываем, если отсутствует
+                    subscribers = Category.objects.get(title=i)
+                    subscr = Subscription(user=user, subscribers=subscribers)
+                    subscr.save()
+                    s_mail(user)
+        else:  # пользователь ни на что не подписан, точно записываем
+            for i in title_l:
+                subscribers = Category.objects.get(title=i)
+                subscr = Subscription(user=user, subscribers=subscribers)
+                subscr.save()
+                s_mail(user)
+
+    title_l.clear()
+    context = {'form': form, 'user': user}
+    return render(request, template_name='news/category_subscr.html', context=context)
+
+# class CheckCategory(LoginRequiredMixin, ListView):  Что-то не получилось!!!
+#     login_url = LOGIN_URL
+#
+#     model = Category
+#     template_name = 'news/category_subscr.html'
+#     context_object_name = 'check_category'
+#
+#     form_class = CategoryForm
+

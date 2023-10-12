@@ -13,7 +13,10 @@
 <!-- В контенте на странице мы выводим все новости -->
 {% block content %}
     <style>
-        li { list-style-type: none }
+        li { list-style-type: none; }
+        .news_bar {
+        background: #ebe4e4;
+        }
     </style>  <!-- Убираем маркеры в списке -->
     <h3> {{ time_now|date:'d F Y' }}</h3>
     <h4> {{ next_sale|default_if_none:"Приветствуем на новостном портале" }} </h4>
@@ -44,12 +47,12 @@
                     <td align="left" valign="top" height="80"> {{post.title|censor}} </td>
                     <td align="center" valign="top"> {{post.date_create|date:'d.m.Y H:i'}} </td>  <!-- привести к нужному часовому поясу -->
                     <td align="left" valign="top">
-                        <div>
+                        <div class="news_bar">
                             <p>
-                                Тип публикации: {{post.type_article}}, &nbsp; &nbsp;
+                                Тип публикации: {{post.get_type_article_display}}, &nbsp; &nbsp;
                                 Категория:
                                 {% for i in post.category.all %}
-                                {{ i }},
+                                {{ i.get_title_display }},
                                 {% endfor %} &nbsp; &nbsp;
                                 Автор: {{post.user}}
                             </p>
