@@ -1,7 +1,14 @@
 from datetime import datetime
 from django import template
+from django.conf import settings
 
 register = template.Library()
+base_url = settings.ROOT_URLCONF
+
+
+@register.simple_tag
+def add_domain(partial_url):  # Херня какая-то, должна была url для ссылок в письмах готовить, вышел бред
+    return base_url + partial_url
 
 
 @register.simple_tag()

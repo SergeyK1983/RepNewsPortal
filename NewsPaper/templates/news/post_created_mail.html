@@ -6,8 +6,10 @@
     <title>Document</title>
 </head>
 <body>
+    {% load custom_tags %}
     <p> Здравствуй {{user}}. Новая статья в твоём любимом разделе!: </p>
     <p> {{title}} </p>
     <p> {{article|truncatewords:50}} </p>
+<!--    <p> <a href="{% add_domain news %}"> Смотреть </a> </p>-->
 </body>
 </html>

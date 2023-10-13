@@ -210,6 +210,7 @@ class ArticlesDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('news')
 
 
+# Отправка письма пользователю при подписке на категорию новостей/статей
 @login_required
 def check_category(request):
     def s_mail(user_m):

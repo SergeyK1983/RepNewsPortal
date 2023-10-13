@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Category, Author, PostCategory, Comment
+from .models import Post, Category, Author, PostCategory, Comment, Subscription
 
 
 # Вспомогательный класс для админ панели
@@ -32,8 +32,15 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('post', 'user', 'com_text')
 
 
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'subscribers')
+    list_display_links = ('id', 'user', 'subscribers')
+    search_fields = ('user', 'subscribers')
+
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(PostCategory, PostCategoryAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(Subscription, SubscriptionAdmin)

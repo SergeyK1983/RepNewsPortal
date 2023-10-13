@@ -49,11 +49,17 @@ INSTALLED_APPS = [
     'django.contrib.sites',  # Для простых страничек
     'django.contrib.flatpages',  # Для простых страничек
 
+    'django_celery_beat',  # Для периодических задач
+
     'django_filters',  # django фильтры, из добавленной библиотеки ‘django_filters’
 
     'news.apps.NewsConfig',
-    'accounts',
+    'accounts.apps.AccountsConfig',
 ]
+
+DEFAULT_FROM_EMAIL = 'ssp-serg@yandex.ru'  # здесь указываем уже свою ПОЛНУЮ почту, с которой будут отправляться письма
+
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'  # тем самым указав Celery использовать новый планировщик задач
 
 SITE_ID = 1
 
@@ -106,9 +112,9 @@ LOGIN_REDIRECT_URL = "login_redirect_url"
 # Настройки для верификации
 ACCOUNT_EMAIL_REQUIRED = True  # email является обязательным
 ACCOUNT_UNIQUE_EMAIL = True  # email является уникальным
-ACCOUNT_USERNAME_REQUIRED = False  # username теперь необязательный.
+ACCOUNT_USERNAME_REQUIRED = True  # False username теперь необязательный.
 ACCOUNT_AUTHENTICATION_METHOD = 'email'  # аутентификация будет происходить посредством электронной почты
-ACCOUNT_EMAIL_VERIFICATION = 'none'  # верификация почты отсутствует
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # 'none' верификация почты отсутствует
 
 # Чтобы allauth распознал нашу форму как ту, что должна выполняться вместо формы по умолчанию
 # нужно чтобы зарегистрированный пользователь сразу добавлялся в нужную группу
