@@ -11,12 +11,13 @@ from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseNotFound
 from django.core.mail import send_mail, EmailMultiAlternatives
-from .models import Post, Subscription, Category
+from .models import Post, Subscription, Category, Author
 from .filters import NewsFilter
 from .forms import NewsForm, CategoryForm
 import os
 from pathlib import Path
 from NewsPaper.settings import LOGIN_URL
+from .tasks import hello, printer
 
 
 def page_not_found(request, exception):
@@ -25,6 +26,13 @@ def page_not_found(request, exception):
 
 def user_not_authenticated(request, exception):
     return HttpResponseNotFound('<h1 align="center"> Ошибка 403 <br> Пользователь не авторизирован </h1>')
+
+
+class ProbaCelery(View):
+    def get(self, request):
+        printer.delay(10)
+        hello.delay()
+        return HttpResponse('Hello')
 
 
 class NewsList(ListView):
@@ -213,10 +221,11 @@ class ArticlesDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
 # Отправка письма пользователю при подписке на категорию новостей/статей
 @login_required
 def check_category(request):
-    def s_mail(user_m):
+    def s_mail(user_m, category: list):
+
         send_mail(
                 subject='Новостной портал',
-                message='Вы подписаны на рассылку новостей по категории: ',
+                message=f'Вы подписаны на рассылку новостей по категории: {", ".join(category)}',
                 from_email='ssp-serg@yandex.ru',
                 recipient_list=[user_m.email, ]  # ['ksm.serg1983@gmail.com', ]
             )
@@ -225,10 +234,10 @@ def check_category(request):
     user = User.objects.get(username=request.user)
     cat_list = dict(request.POST)
     title_l = []
+    cat_d = []
     if cat_list:
         sub = list(Subscription.objects.filter(user=user.id).values('subscribers'))
         cat = list(Category.objects.all().values('id', 'title'))
-        title_l = []
 
         for i in cat_list['title']:
             for j in cat:
@@ -237,17 +246,23 @@ def check_category(request):
 
         if sub:
             for i in title_l:  # Раз нет, то надо записать, если нет
-                if not Subscription.objects.filter(subscribers=i).exists():  # Записываем, если отсутствует
+                if not Subscription.objects.filter(subscribers=i, user=user).exists():  # Записываем, если отсутствует
                     subscribers = Category.objects.get(title=i)
                     subscr = Subscription(user=user, subscribers=subscribers)
                     subscr.save()
-                    s_mail(user)
+                    c = Category.objects.get(title=i)
+                    cat_d.append(c.get_title_display())
+            if cat_d:
+                s_mail(user, cat_d)
         else:  # пользователь ни на что не подписан, точно записываем
             for i in title_l:
                 subscribers = Category.objects.get(title=i)
                 subscr = Subscription(user=user, subscribers=subscribers)
                 subscr.save()
-                s_mail(user)
+                c = Category.objects.get(title=i)
+                cat_d.append(c.get_title_display())
+            if cat_d:
+                s_mail(user, cat_d)
 
     title_l.clear()
     context = {'form': form, 'user': user}

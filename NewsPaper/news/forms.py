@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Post, Category, Subscription
+from .models import Post, Category, Subscription, Author
 
 
 class CategoryForm(forms.Form):
@@ -19,11 +19,23 @@ class NewsForm(forms.ModelForm):
     # title = forms.C(label='Заголовок')
     # article = forms.Textarea(label='Содержание')
 
+    def us(self, request):
+        _user = request.user
+        return _user
+
+    user = us
+
     class Meta:
         model = Post
+        # exclude = ['user']  # Исключить поле
         widgets = {
+            'category': forms.CheckboxSelectMultiple,
             'title': forms.Textarea(attrs={'class': 'form-text', 'cols': 150, 'rows': 3}),
             'article': forms.Textarea(attrs={'class': 'form-text', 'cols': 150, 'rows': 10}),
+        }
+        labels = {
+            'category': 'Категории',
+            'article': 'Содержание',
         }
         fields = [
             'user',
@@ -32,7 +44,7 @@ class NewsForm(forms.ModelForm):
             'article'
         ]
 
-    # хз зачем, в модели эти поля определены, как не могут быть пустыми по умолчанию
+    # хз зачем, в модели эти поля определены как не могут быть пустыми по умолчанию
     def clean(self):
         cleaned_data = super().clean()
         user = cleaned_data.get("user")

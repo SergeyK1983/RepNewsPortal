@@ -61,6 +61,13 @@ DEFAULT_FROM_EMAIL = 'ssp-serg@yandex.ru'  # здесь указываем уж�
 
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'  # тем самым указав Celery использовать новый планировщик задач
 
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+# celery -A NewsPaper worker -l INFO - команда на посмотреть
+
 SITE_ID = 1
 
 MIDDLEWARE = [
@@ -114,7 +121,7 @@ ACCOUNT_EMAIL_REQUIRED = True  # email является обязательным
 ACCOUNT_UNIQUE_EMAIL = True  # email является уникальным
 ACCOUNT_USERNAME_REQUIRED = True  # False username теперь необязательный.
 ACCOUNT_AUTHENTICATION_METHOD = 'email'  # аутентификация будет происходить посредством электронной почты
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # 'none' верификация почты отсутствует
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # 'none' верификация почты отсутствует  /"mandatory"
 
 # Чтобы allauth распознал нашу форму как ту, что должна выполняться вместо формы по умолчанию
 # нужно чтобы зарегистрированный пользователь сразу добавлялся в нужную группу
