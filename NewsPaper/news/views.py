@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -17,7 +17,7 @@ from .forms import NewsForm, CategoryForm
 import os
 from pathlib import Path
 from NewsPaper.settings import LOGIN_URL
-from .tasks import hello, printer
+from .tasks import hello
 
 
 def page_not_found(request, exception):
@@ -25,12 +25,15 @@ def page_not_found(request, exception):
 
 
 def user_not_authenticated(request, exception):
-    return HttpResponseNotFound('<h1 align="center"> Ошибка 403 <br> Пользователь не авторизирован </h1>')
+    return HttpResponseNotFound('<h1 align="center"> Ошибка 403 <br> Пользователь не является автором </h1>')
 
 
+# Для запуска задач.
 class ProbaCelery(View):
     def get(self, request):
-        printer.delay(10)
+        # printer.delay(10)
+        # printer.apply_async([10], countdown=5)  # запуск с задержкой 5с
+        # printer.apply_async([10], eta=datetime.now() + timedelta(seconds=5))
         hello.delay()
         return HttpResponse('Hello')
 
@@ -114,8 +117,9 @@ class NewsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
         title = post.title  # request.POST['title']
         article = post.article  # self.request.POST['article']
+
         # category = post.category
-        # print(category)
+
         users = Subscription.objects.filter().values('user__id')
         users_for_email = set([i.get('user__id') for i in users])  # Перечень подписчиков
         # mail = [User.objects.filter(id=i).values('email') for i in a]
