@@ -17,7 +17,7 @@ from .forms import NewsForm, CategoryForm
 import os
 from pathlib import Path
 from NewsPaper.settings import LOGIN_URL
-from .tasks import hello
+from .tasks import hello, send_email_every_week
 
 
 def page_not_found(request, exception):
@@ -35,6 +35,7 @@ class ProbaCelery(View):
         # printer.apply_async([10], countdown=5)  # запуск с задержкой 5с
         # printer.apply_async([10], eta=datetime.now() + timedelta(seconds=5))
         hello.delay()
+        send_email_every_week.delay()
         return HttpResponse('Hello')
 
 

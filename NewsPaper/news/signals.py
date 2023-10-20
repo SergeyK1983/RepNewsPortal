@@ -8,6 +8,7 @@ from .tasks import send_email
 # Чтобы работало, нужно переопределить метод ready в apps.py
 
 
+# Отсылаем письма подписчикам при добавлении поста на выбранную ими категорию
 @receiver(m2m_changed, sender=PostCategory)
 def create_post(sender, instance, **kwargs):  # created был после instance
     # Для массовой рассылки надо использовать send_mass_mail() https://djangodoc.ru/3.2/topics/email/
@@ -30,7 +31,8 @@ def create_post(sender, instance, **kwargs):  # created был после instan
     # )
 
 
+# Команда на отсылку писем (tasks.py) при добавлении нового поста
 @receiver(post_save, sender=Post)
-def create_post(sender, instance, created, **kwargs):  # created был после instance
+def create_post(sender, instance, created, **kwargs):
     send_email.delay()
 

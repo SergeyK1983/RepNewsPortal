@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en, ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% load custom_tags %}
+    <h1> Здравствуйте! Наши статьи за прошлую неделю </h1>
+    <br>
+    <h3> Заголовки: </h3>
+    {% for i in post %}
+    <p> {{i.title|truncatewords:10}} </p>
+    {% endfor %}
+</body>
+</html>

@@ -13,6 +13,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'action_every_monday_8am': {
         'task': 'news.tasks.send_email_every_week',
+        # crontab позволяет задавать расписание, ориентируясь на точное время, день недели, месяца и т. д. см. док-ю
         'schedule': crontab(hour=8, minute=0, day_of_week='monday'),
         # 'args': (5, ),
     },
