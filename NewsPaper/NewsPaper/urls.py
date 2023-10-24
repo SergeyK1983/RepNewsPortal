@@ -20,11 +20,14 @@ from .views import index  # Выбрана рабочая папка NewsPaper �
 from news.views import page_not_found, user_not_authenticated
 from accounts.views import IndexView
 
+# Для кэширования
+from django.views.decorators.cache import cache_page
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('news/', include('news.urls')),
-    path('', index, name="home"),
+    path('', cache_page(60)(index), name="home"),  # Добавлено кэширование главной страницы, 1 мин
     path('protect/', IndexView.as_view(), name="login_redirect_url"),
     path('accounts/', include('accounts.urls')),
     path('account/', include('allauth.urls')),  # это при помощи pip install django-allauth

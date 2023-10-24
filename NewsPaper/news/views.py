@@ -19,6 +19,8 @@ from pathlib import Path
 from NewsPaper.settings import LOGIN_URL
 from .tasks import hello, send_email_every_week
 
+from django.core.cache import cache  # импортируем наш кэш
+
 
 def page_not_found(request, exception):
     return HttpResponseNotFound('<h1 align="center"> Ошибка 404 <br> Страница не найдена </h1>')
@@ -76,6 +78,19 @@ class PostDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['time_now'] = datetime.utcnow()
         return context
+
+    # Для кэширования. Это не всё, нужно внести правки в модель Post (models.py)
+    # Пробуем сделать так, чтобы детали новостей кэшировались до тех пор, пока они не изменятся.
+    def get_object(self, *args, **kwargs):  # переопределяем метод получения объекта, как ни странно
+        # https://docs.djangoproject.com/en/4.2/topics/cache/
+        obj = cache.get(f'news-{self.kwargs["id"]}', None)  # кэш очень похож на словарь, и метод get действует так же. Он забирает значение по ключу, если его нет, то забирает None.
+
+        # если объекта нет в кэше, то получаем его и записываем в кэш
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'news-{self.kwargs["id"]}', obj, 30)
+
+        return obj
 
 
 class SearchNewsList(ListView):

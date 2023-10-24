@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.core.cache import cache  # Для кэширования
 
 
 class Author(models.Model):  # объекты всех авторовuse
@@ -117,6 +118,13 @@ class Post(models.Model):  # содержит в себе статьи и нов
 
     def get_absolute_url(self):
         return reverse(viewname='post', args=[str(self.id)])
+
+    # Для кэширования на странице с новостью.
+    # Установили реакцию на редактирование объекта. Когда объект меняется его надо удалять из кэша,
+    # чтобы ключ сбрасывался и больше не находился.
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # сначала вызываем метод родителя, чтобы объект сохранился
+        cache.delete(f'news-{self.id}')  # затем удаляем его из кэша, чтобы сбросить его
 
 
 class PostCategory(models.Model):  # Промежуточная модель для связи «многие ко многим»

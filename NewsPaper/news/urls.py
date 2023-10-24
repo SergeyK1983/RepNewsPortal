@@ -3,6 +3,9 @@ from django.urls import path
 from .views import NewsList, PostDetail, SearchNewsList, NewsCreate, ArticlesCreate, NewsUpdate, NewsDelete, \
    ArticlesUpdate, ArticlesDelete, check_category, ProbaCelery
 
+# Для кэширования
+from django.views.decorators.cache import cache_page
+
 urlpatterns = [
    # path — означает путь.
    # В данном случае путь ко всем товарам у нас останется пустым,
@@ -10,7 +13,7 @@ urlpatterns = [
    # Т.к. наше объявленное представление является классом,
    # а Django ожидает функцию, нам надо представить этот класс в виде view.
    # Для этого вызываем метод as_view.
-   path('', NewsList.as_view(), name='news'),
+   path('', cache_page(60*5)(NewsList.as_view()), name='news'),  # Добавлено кэширование на страницу с новостями, 5мин
    # pk — это первичный ключ товара, который будет выводиться у нас в шаблон
    # int — указывает на то, что принимаются только целочисленные значения
    path('<int:id>', PostDetail.as_view(), name='post'),
