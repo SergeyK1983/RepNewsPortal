@@ -1,5 +1,7 @@
 .idea
 /sql
+/back
 БД postgreSQL подключение.txt
 superuser.txt
 temp.py
+dump.rdb

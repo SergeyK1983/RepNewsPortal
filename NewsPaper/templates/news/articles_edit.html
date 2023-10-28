@@ -5,6 +5,7 @@
 {% endblock title %}
 
 {% block content %}
+<div class="post">
 <h3> Публикация/редактирование</h3>
 <p style="font-size:22px"> статьи </p>
 <hr>
@@ -27,4 +28,5 @@
 {% if object.id is not None%}
     <p align="left"><a href="{% url 'articles_delete' post.id %} " > Удалить статью </a></p>
 {% endif %}
+</div>
 {% endblock content %}

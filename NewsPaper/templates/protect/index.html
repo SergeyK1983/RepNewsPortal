@@ -1,6 +1,7 @@
 {% extends 'news/flatpages/default.html' %}
 
 {% block content %}
+<div class="post">
 <h2>Страница авторизованного пользователя {{request.user.username}}</h2>
 <div> Здесь может содержаться персональная информация для каждого пользователя </div>
 <br>
@@ -11,5 +12,5 @@
 {% if is_not_authors %}  <!-- кнопка не будет отображаться, если в контексте (is_not_authors, см. 'upgrade') пользователь находится уже в группе authors -->
 <button> <a href="{% url 'upgrade' %}"> Хочу стать автором!</a> </button>
 {% endif %}
-
+</div>
 {% endblock %}

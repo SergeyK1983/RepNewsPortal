@@ -1,10 +1,11 @@
 {% extends 'news/flatpages/default.html' %}
 
 {% block title %}
-Выбрать категорию
+Подписка
 {% endblock title %}
 
 {% block content %}
+<!--
 <style>
 p,
 label {
@@ -16,7 +17,8 @@ input {
   margin: 0.4rem;
 }
 </style>
-
+-->
+<div class="post">
 <div align="left">
     <form action="" method="POST">
         {% csrf_token %}
@@ -26,5 +28,5 @@ input {
         <input type="submit" value="Подписаться">
     </form>
 </div>
-
+</div>
 {% endblock content%}

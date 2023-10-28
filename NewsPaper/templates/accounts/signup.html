@@ -1,10 +1,12 @@
-{% extends 'news/flatpages/default.html' %}
+{% extends 'account/base.html' %}
 
 {% block content %}
+<div class="post">
 <h2> Регистрация </h2>
 <form method="post">
 {% csrf_token %}
 {{ form.as_p }}  <!-- использовали автоматически формируемое представление формы в виде набора тегов <p> -->
 <input type="submit" value="Продолжить">
 </form>
+</div>
 {% endblock %}

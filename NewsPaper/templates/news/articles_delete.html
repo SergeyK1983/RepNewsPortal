@@ -1,6 +1,7 @@
 {% extends 'news/flatpages/default.html' %}
 
 {% block content %}
+<div class="post">
 <h1>Удаление статьи</h1>
 <hr>
 {% if object.type_article == "AR" %}
@@ -16,4 +17,5 @@
         </ul>
     </div>
 {% endif %}
+</div>
 {% endblock content %}

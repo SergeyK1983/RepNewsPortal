@@ -2,15 +2,15 @@
 
 <!-- Название у нас будет -->
 {% block title %}
-Учебная
+Главная
 {% endblock title %}
 
 <!-- В контенте на странице мы выводим все новости -->
-{% block content %}
-<h1> Новостной портал </h1>
+{% block index %}
+<!-- <h1> Новостной портал </h1> -->
 
     {% include 'accounts/users_auth.html' %}
 
 <!-- <p><a href="/news/"> Читать полностью ... </a></p> -->
 
-{% endblock content %}
+{% endblock index %}
