@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-yfzrw7x^)33qy2t&jd#!ei#g7(+2l5abd_-z9vz%l(1&ux@@d%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # В боевом режиме поставить на False, чтобы не видеть отладочную инфу при ошибках
+DEBUG = False  # В боевом режиме поставить на False, чтобы не видеть отладочную инфу при ошибках
 
 ALLOWED_HOSTS = ['127.0.0.1']  # Тут наш сайт: www:something.ru или IP адрес, пока ХЗ.
 
@@ -209,6 +209,118 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'ssp-serg'  # ваше имя пользователя
-EMAIL_HOST_PASSWORD = ''  # пароль от почты
+EMAIL_HOST_PASSWORD = 'Pas1104191532!'  # пароль от почты
 EMAIL_USE_SSL = True  # Яндекс использует ssl
+
+# Логирование
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,  # Не отключаем имеющиеся логеры
+    'formatters': {
+        'console_debug': {
+            'format': '{asctime} - {levelname} - {message}',  # в консоль: время, уровень сообщения, сообщения
+            'style': '{',  # Чтобы django не матерился на {} в названии
+        },
+        'console_warning': {
+            'format': '{asctime} - {levelname} - {pathname} - {message}',  # в консоль: время, уровень сообщения, путь к источнику события, сообщения
+            'style': '{',
+        },
+        'console_error': {
+            'format': '{asctime} - {levelname} - {pathname} - {exc_info} - {message}',  # в консоль: время, уровень сообщения, путь к источнику события, стэк ошибки, сообщения
+            'style': '{',
+        },
+        'general_log_info': {
+            'format': '{asctime} - {levelname} - {module} - {message}',  # уровня INFO и выше только с указанием времени, уровня логирования, модуля, сообщение
+            'style': '{',
+        },
+        'error_log': {
+            'format': '{asctime} - {levelname} - {pathname} - {exc_info} - {message}',  # время, уровень логирования, само сообщение, путь к источнику сообщения и стэк ошибки
+            'style': '{',
+        },
+        'security_log': {
+            'format': '{asctime} - {levelname} - {module} - {message}',  # время, уровень логирования, модуль и сообщение (из логгера django.security)
+            'style': '{',
+        },
+        'mail_error': {
+            'format': '{asctime} - {levelname} - {pathname} - {message}',  # из django.request и django.server по формату, как в errors.log, но без стэка ошибок.
+            'style': '{',
+        },
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',  # фильтр, который пропускает записи только в случае, когда DEBUG = True
+        },
+    },
+    # Обработчики
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',  # для вывода в консоль
+            'formatter': 'console_debug',
+        },
+        'file_general.log': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'general.log',
+            'formatter': 'general_log_info',
+        },
+        'file_errors.log': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'errors.log',
+            'formatter': 'error_log',
+        },
+        'file_security.log': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'security.log',
+            'formatter': 'security_log',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'mail_error',
+        }
+    },
+    'loggers': {
+        # Логгер верхнего уровня, который принимает все сообщения, но непосредственно в него ничего не записывается.
+        # Все сообщения, поступающие в него распределяются по дочерним логгерам.
+        'django': {
+            'handlers': ['console', 'file_general.log'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        # Логгер, принимающий все сообщения, связанные с ошибками обработки запроса.
+        'django.request': {
+            'handlers': ['file_errors.log', 'mail_admins'],
+            'level': "ERROR",
+            'propagate': False,  # False для того, чтобы логгер верхнего уровня не дублировал информацию
+        },
+        # Логгер, регистрирующий сообщения, возникающие на этапе вызова команды runserver.
+        # Ответы HTTP 5XX регистрируются как сообщения ОБ ОШИБКЕ, ответы 4XX регистрируются
+        # как предупреждающие сообщения, а все остальное регистрируется как INFO.
+        'django.server': {
+            'handlers': ['file_errors.log', 'mail_admins'],
+            'propagate': True,
+        },
+        # Логгер, Журнал сообщений, связанных с рендерингом шаблонов.
+        'django.template': {
+            'handlers': ['file_errors.log'],
+            'propagate': False,
+        },
+        # Сообщения, попадающие в этот логгер, относятся к взаимодействию приложения с базой данных.
+        # Ошибки в моделях, взаимодействии с ними, миграциях и т. д.
+        # Например, каждый оператор SQL прикладного уровня, выполняемый запросом, регистрируется
+        # на уровне DEBUG в этом регистраторе.
+        'django.db.backends': {
+            'handlers': ['file_errors.log'],
+            'propagate': False,
+        },
+        # Определяет класс логгеров, регистрирующих события нарушения безопасности.
+        'django.security': {
+            'handlers': ['file_security.log'],
+            'propagate': False,
+        },
+    },
+}
 

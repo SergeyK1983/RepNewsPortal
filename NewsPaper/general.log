@@ -1,0 +1,355 @@
+2023-11-20 17:17:30,662 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 17:18:03,251 - INFO - basehttp - "GET / HTTP/1.1" 200 4847
+2023-11-20 17:18:03,403 - INFO - basehttp - "GET /static/news/css/styles.css HTTP/1.1" 200 3481
+2023-11-20 17:18:03,457 - INFO - basehttp - "GET /static/news/images/fon-menu.png HTTP/1.1" 200 760361
+2023-11-20 17:18:03,466 - INFO - basehttp - "GET /static/news/images/fon-main.jpg HTTP/1.1" 200 745045
+2023-11-20 17:18:03,489 - INFO - basehttp - "GET /static/news/fonts/CormorantInfant-Bold.ttf HTTP/1.1" 200 601324
+2023-11-20 17:18:03,517 - INFO - basehttp - "GET /static/news/fonts/cour.ttf HTTP/1.1" 200 806504
+2023-11-20 17:18:03,535 - INFO - basehttp - "GET /static/news/fonts/CormorantInfant-Regular.ttf HTTP/1.1" 200 602596
+2023-11-20 17:18:47,507 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 17:19:43,610 - INFO - basehttp - "GET /news/25 HTTP/1.1" 200 4974
+2023-11-20 17:20:01,813 - INFO - basehttp - "GET / HTTP/1.1" 200 4847
+2023-11-20 17:21:40,245 - INFO - basehttp - "GET /news/search/ HTTP/1.1" 200 10465
+2023-11-20 17:22:28,604 - INFO - basehttp - "GET / HTTP/1.1" 200 4847
+2023-11-20 17:45:04,366 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 17:45:17,627 - INFO - basehttp - "GET / HTTP/1.1" 200 4847
+2023-11-20 17:45:42,527 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\urls.py changed, reloading.
+2023-11-20 17:45:43,626 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 17:45:53,773 - INFO - basehttp - "GET / HTTP/1.1" 200 4847
+2023-11-20 17:45:57,133 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 17:46:01,594 - WARNING - basehttp - "GET /news/25 HTTP/1.1" 404 4560
+2023-11-20 17:46:45,995 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\urls.py changed, reloading.
+2023-11-20 17:46:47,248 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 17:46:49,672 - INFO - basehttp - "GET /news/25 HTTP/1.1" 200 4974
+2023-11-20 17:47:39,677 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 17:50:02,884 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 17:50:31,936 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 17:51:27,906 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 17:52:10,170 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 17:52:11,247 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 17:52:22,120 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 17:52:24,229 - INFO - basehttp - "GET /news/news/create/ HTTP/1.1" 302 0
+2023-11-20 17:52:24,287 - INFO - basehttp - "GET /account/login/?next=/news/news/create/ HTTP/1.1" 200 2173
+2023-11-20 17:52:55,099 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 200 2307
+2023-11-20 17:53:14,714 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 302 0
+2023-11-20 17:53:14,786 - ERROR - basehttp - "GET /news/news/create/ HTTP/1.1" 500 88523
+2023-11-20 17:54:33,150 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 17:54:34,262 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 17:54:38,534 - INFO - basehttp - "GET /news/news/create/ HTTP/1.1" 200 3486
+2023-11-20 17:55:04,876 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 17:55:05,947 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 17:55:12,327 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 17:55:23,449 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 17:55:24,532 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 17:55:35,623 - ERROR - log - Internal Server Error: /news/news/create/
+Traceback (most recent call last):
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: new/news_edit.html
+2023-11-20 17:55:35,625 - ERROR - basehttp - "GET /news/news/create/ HTTP/1.1" 500 88376
+2023-11-20 17:56:14,583 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 17:56:15,874 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 17:56:18,205 - INFO - basehttp - "GET /news/news/create/ HTTP/1.1" 200 3486
+2023-11-20 17:59:30,236 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 17:59:31,466 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:01:48,856 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:01:49,971 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:09:07,304 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:12:39,225 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:13:34,305 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:13:35,422 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:14:34,219 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:14:35,322 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:14:39,133 - INFO - basehttp - "GET / HTTP/1.1" 200 4847
+2023-11-20 18:14:40,084 - INFO - basehttp - "GET / HTTP/1.1" 200 4847
+2023-11-20 18:14:56,787 - INFO - basehttp - "GET /account/login/ HTTP/1.1" 200 2037
+2023-11-20 18:15:03,780 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 200 2171
+2023-11-20 18:17:53,770 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:17:54,880 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:18:42,833 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:18:43,945 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:18:46,707 - INFO - basehttp - "GET / HTTP/1.1" 200 4782
+2023-11-20 18:19:31,540 - INFO - basehttp - "GET / HTTP/1.1" 200 4782
+2023-11-20 18:19:31,707 - INFO - basehttp - "GET / HTTP/1.1" 200 4782
+2023-11-20 18:19:55,083 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:19:56,188 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:20:23,521 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:20:24,638 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:20:37,271 - INFO - basehttp - "GET / HTTP/1.1" 200 4782
+2023-11-20 18:20:37,412 - INFO - basehttp - "GET / HTTP/1.1" 200 4782
+2023-11-20 18:21:00,770 - WARNING - basehttp - "GET /as HTTP/1.1" 404 2762
+2023-11-20 18:23:29,501 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\urls.py changed, reloading.
+2023-11-20 18:23:30,593 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:23:57,288 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:24:39,442 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\urls.py changed, reloading.
+2023-11-20 18:24:40,746 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:25:25,282 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:25:26,406 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:25:39,378 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:25:40,493 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:26:16,110 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:26:17,251 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:26:30,207 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:26:31,372 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:26:50,668 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:26:52,106 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:27:07,161 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:27:08,335 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:34:45,322 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:34:46,449 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:35:51,130 - WARNING - basehttp - "GET /as HTTP/1.1" 404 2762
+2023-11-20 18:36:04,390 - INFO - basehttp - "GET / HTTP/1.1" 200 4782
+2023-11-20 18:36:18,138 - INFO - basehttp - "GET /account/logout/ HTTP/1.1" 200 835
+2023-11-20 18:36:20,124 - INFO - basehttp - "POST /account/logout/ HTTP/1.1" 302 0
+2023-11-20 18:36:20,136 - INFO - basehttp - "GET / HTTP/1.1" 200 4782
+2023-11-20 18:36:22,773 - INFO - basehttp - "GET / HTTP/1.1" 200 4782
+2023-11-20 18:37:00,988 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 18:37:02,787 - INFO - basehttp - "GET /news/news/create/ HTTP/1.1" 302 0
+2023-11-20 18:37:02,816 - INFO - basehttp - "GET /account/login/?next=/news/news/create/ HTTP/1.1" 200 2173
+2023-11-20 18:37:14,904 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 200 2307
+2023-11-20 18:38:32,174 - INFO - basehttp - "POST /account/login/ HTTP/1.1" 302 0
+2023-11-20 18:38:32,201 - INFO - basehttp - "GET /news/news/create/ HTTP/1.1" 200 3486
+2023-11-20 18:38:49,701 - INFO - basehttp - "GET /admin/ HTTP/1.1" 302 0
+2023-11-20 18:38:49,742 - INFO - basehttp - "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4403
+2023-11-20 18:38:49,775 - INFO - basehttp - "GET /static/admin/css/base.css HTTP/1.1" 304 0
+2023-11-20 18:38:49,779 - INFO - basehttp - "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+2023-11-20 18:38:49,780 - INFO - basehttp - "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+2023-11-20 18:38:49,781 - INFO - basehttp - "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+2023-11-20 18:38:49,784 - INFO - basehttp - "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+2023-11-20 18:38:49,785 - INFO - basehttp - "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+2023-11-20 18:38:49,858 - INFO - basehttp - "GET /static/admin/css/login.css HTTP/1.1" 200 958
+2023-11-20 18:38:49,872 - INFO - basehttp - "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+2023-11-20 18:39:08,086 - INFO - basehttp - "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+2023-11-20 18:39:08,136 - INFO - basehttp - "GET /admin/ HTTP/1.1" 200 18695
+2023-11-20 18:39:08,171 - INFO - basehttp - "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+2023-11-20 18:39:08,186 - INFO - basehttp - "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+2023-11-20 18:39:08,186 - INFO - basehttp - "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+2023-11-20 18:39:08,186 - INFO - basehttp - "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 304 0
+2023-11-20 18:39:55,338 - INFO - basehttp - "GET /admin/account/emailaddress/ HTTP/1.1" 200 20370
+2023-11-20 18:39:55,377 - INFO - basehttp - "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+2023-11-20 18:39:55,379 - INFO - basehttp - "GET /static/admin/js/core.js HTTP/1.1" 304 0
+2023-11-20 18:39:55,380 - INFO - basehttp - "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+2023-11-20 18:39:55,380 - INFO - basehttp - "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+2023-11-20 18:39:55,380 - INFO - basehttp - "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+2023-11-20 18:39:55,386 - INFO - basehttp - "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+2023-11-20 18:39:55,390 - INFO - basehttp - "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+2023-11-20 18:39:55,391 - INFO - basehttp - "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+2023-11-20 18:39:55,394 - INFO - basehttp - "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+2023-11-20 18:39:55,405 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 18:39:55,420 - INFO - basehttp - "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+2023-11-20 18:39:55,420 - INFO - basehttp - "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+2023-11-20 18:39:55,433 - INFO - basehttp - "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+2023-11-20 18:39:55,439 - INFO - basehttp - "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+2023-11-20 18:40:01,196 - INFO - basehttp - "GET /admin/news/author/ HTTP/1.1" 200 18092
+2023-11-20 18:40:01,227 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 18:40:01,255 - INFO - basehttp - "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+2023-11-20 18:40:13,403 - INFO - basehttp - "GET /admin/news/postcategory/ HTTP/1.1" 200 24560
+2023-11-20 18:40:13,436 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 18:44:21,278 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:44:22,520 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:46:43,127 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:46:44,239 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 18:48:01,305 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 18:48:02,448 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:15:56,755 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 20:15:57,987 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:16:13,171 - INFO - basehttp - "GET / HTTP/1.1" 200 4779
+2023-11-20 20:18:16,132 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 20:18:17,243 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:18:54,333 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 20:18:55,425 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:19:08,394 - INFO - basehttp - "GET / HTTP/1.1" 200 4779
+2023-11-20 20:19:08,560 - INFO - basehttp - "GET / HTTP/1.1" 200 4779
+2023-11-20 20:19:27,966 - WARNING - basehttp - "GET /q HTTP/1.1" 404 2759
+2023-11-20 20:21:36,768 - INFO - basehttp - "GET / HTTP/1.1" 200 4779
+2023-11-20 20:21:44,115 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\urls.py changed, reloading.
+2023-11-20 20:21:45,260 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:21:49,461 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21589
+2023-11-20 20:21:51,830 - INFO - basehttp - "GET /news/news/create1/ HTTP/1.1" 200 3486
+2023-11-20 20:22:11,568 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\urls.py changed, reloading.
+2023-11-20 20:22:12,848 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:22:24,535 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\urls.py changed, reloading.
+2023-11-20 20:22:25,610 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:22:28,155 - WARNING - basehttp - "GET /news/news/create1/ HTTP/1.1" 404 4773
+2023-11-20 20:22:49,606 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\urls.py changed, reloading.
+2023-11-20 20:22:50,724 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:23:36,080 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 20:23:37,496 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:23:45,369 - INFO - basehttp - "GET / HTTP/1.1" 200 4779
+2023-11-20 20:24:26,500 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 20:24:27,735 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:24:33,511 - INFO - basehttp - "GET / HTTP/1.1" 200 4779
+2023-11-20 20:24:43,833 - WARNING - basehttp - "GET /news/news/create1/ HTTP/1.1" 404 4772
+2023-11-20 20:25:08,381 - ERROR - basehttp - "GET /news/news/create/ HTTP/1.1" 500 88851
+2023-11-20 20:28:42,998 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 20:28:44,138 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:29:03,783 - INFO - basehttp - "GET /news/news/create/ HTTP/1.1" 200 3486
+2023-11-20 20:30:56,655 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 20:30:57,753 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:31:11,653 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 20:31:12,748 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:31:34,373 - INFO - basehttp - "GET /news/news/create/ HTTP/1.1" 200 3486
+2023-11-20 20:31:47,940 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 20:32:33,468 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 20:32:34,586 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:32:40,319 - INFO - basehttp - "GET /news/news/create/ HTTP/1.1" 200 3486
+2023-11-20 20:32:51,782 - INFO - basehttp - "POST /news/news/create/ HTTP/1.1" 200 3583
+2023-11-20 20:33:09,573 - INFO - basehttp - "POST /news/news/create/ HTTP/1.1" 200 3583
+2023-11-20 20:33:21,012 - INFO - basehttp - "GET /news/news/create/ HTTP/1.1" 200 3486
+2023-11-20 20:33:33,648 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 20:33:34,831 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:35:16,611 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 20:35:17,715 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:35:23,969 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 20:35:26,824 - INFO - basehttp - "GET / HTTP/1.1" 200 4779
+2023-11-20 20:35:30,770 - INFO - basehttp - "GET /news/25 HTTP/1.1" 200 4974
+2023-11-20 20:35:39,709 - INFO - basehttp - "GET /news/category/ HTTP/1.1" 200 2708
+2023-11-20 20:35:43,492 - ERROR - basehttp - "POST /news/category/ HTTP/1.1" 500 81201
+2023-11-20 20:36:45,271 - INFO - basehttp - "GET / HTTP/1.1" 200 4779
+2023-11-20 20:36:56,984 - ERROR - basehttp - "GET /news/ HTTP/1.1" 500 107139
+2023-11-20 20:36:57,166 - WARNING - basehttp - "GET /favicon.ico HTTP/1.1" 404 2789
+2023-11-20 20:39:42,517 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 20:39:43,691 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:39:45,925 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 20:39:46,014 - INFO - basehttp - "GET /static/news/css/styles.css HTTP/1.1" 200 3481
+2023-11-20 20:39:46,025 - INFO - basehttp - "GET /static/news/images/fon-menu.png HTTP/1.1" 200 760361
+2023-11-20 20:39:46,025 - INFO - basehttp - "GET /static/news/images/fon-main.jpg HTTP/1.1" 200 745045
+2023-11-20 20:39:46,090 - INFO - basehttp - "GET /static/news/fonts/CormorantInfant-Bold.ttf HTTP/1.1" 200 601324
+2023-11-20 20:39:46,090 - INFO - basehttp - "GET /static/news/fonts/CormorantInfant-Regular.ttf HTTP/1.1" 200 602596
+2023-11-20 20:39:46,094 - INFO - basehttp - "GET /static/news/fonts/cour.ttf HTTP/1.1" 200 806504
+2023-11-20 20:40:00,248 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 20:40:10,516 - INFO - basehttp - "GET /news/search/ HTTP/1.1" 200 10465
+2023-11-20 20:40:46,924 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 20:40:48,112 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:42:07,167 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 20:42:08,574 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:44:02,557 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 20:44:03,849 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:44:40,531 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 20:44:41,652 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:44:51,682 - INFO - basehttp - "GET /admin/news/postcategory/ HTTP/1.1" 200 24560
+2023-11-20 20:44:51,719 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 20:44:55,504 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 20:45:00,376 - INFO - basehttp - "GET /news/articles/create/ HTTP/1.1" 200 3484
+2023-11-20 20:45:02,267 - INFO - basehttp - "GET /news/search/ HTTP/1.1" 200 10465
+2023-11-20 20:45:42,914 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\urls.py changed, reloading.
+2023-11-20 20:45:44,030 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:45:53,667 - INFO - basehttp - "GET /news/search/ HTTP/1.1" 200 10465
+2023-11-20 20:45:55,847 - INFO - basehttp - "GET /news/search/ HTTP/1.1" 200 10465
+2023-11-20 20:46:03,471 - INFO - basehttp - "GET /news/search/ HTTP/1.1" 200 10465
+2023-11-20 20:46:17,415 - INFO - basehttp - "GET /news/search/?author=&title=dfff&date_range= HTTP/1.1" 200 3837
+2023-11-20 20:46:42,995 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\urls.py changed, reloading.
+2023-11-20 20:46:44,299 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:47:56,279 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 20:47:57,366 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:48:03,655 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 20:48:06,106 - INFO - basehttp - "GET / HTTP/1.1" 200 4847
+2023-11-20 20:48:21,277 - INFO - basehttp - "GET / HTTP/1.1" 200 4847
+2023-11-20 20:48:47,554 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 20:48:47,663 - INFO - basehttp - "GET /static/news/css/styles.css HTTP/1.1" 200 3481
+2023-11-20 20:48:47,687 - INFO - basehttp - "GET /static/news/images/fon-menu.png HTTP/1.1" 200 760361
+2023-11-20 20:48:47,692 - INFO - basehttp - "GET /static/news/images/fon-main.jpg HTTP/1.1" 200 745045
+2023-11-20 20:48:47,715 - INFO - basehttp - "GET /static/news/fonts/CormorantInfant-Bold.ttf HTTP/1.1" 200 601324
+2023-11-20 20:48:47,715 - INFO - basehttp - "GET /static/news/fonts/CormorantInfant-Regular.ttf HTTP/1.1" 200 602596
+2023-11-20 20:48:47,724 - INFO - basehttp - "GET /static/news/fonts/cour.ttf HTTP/1.1" 200 806504
+2023-11-20 20:48:51,745 - INFO - basehttp - "GET / HTTP/1.1" 200 4847
+2023-11-20 20:48:53,028 - INFO - basehttp - "GET /news/search/ HTTP/1.1" 200 10465
+2023-11-20 20:48:55,511 - INFO - basehttp - "GET /news/25 HTTP/1.1" 200 4974
+2023-11-20 20:49:05,741 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 20:49:06,977 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:49:18,890 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 20:49:19,941 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:49:27,100 - INFO - basehttp - "GET / HTTP/1.1" 200 4847
+2023-11-20 20:49:28,635 - INFO - basehttp - "GET /news/search/ HTTP/1.1" 200 10465
+2023-11-20 20:49:55,688 - ERROR - basehttp - "GET /news/ HTTP/1.1" 500 92220
+2023-11-20 20:53:10,356 - INFO - basehttp - "GET /admin/account/emailaddress/ HTTP/1.1" 200 20370
+2023-11-20 20:53:10,416 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 20:53:10,647 - INFO - basehttp - "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+2023-11-20 20:53:10,661 - INFO - basehttp - "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+2023-11-20 20:53:10,678 - INFO - basehttp - "GET /static/admin/js/core.js HTTP/1.1" 200 5682
+2023-11-20 20:53:10,697 - INFO - basehttp - "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+2023-11-20 20:53:10,697 - INFO - basehttp - "GET /static/admin/css/changelists.css HTTP/1.1" 200 6566
+2023-11-20 20:53:10,720 - INFO - basehttp - "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+2023-11-20 20:53:10,722 - INFO - basehttp - "GET /static/admin/css/responsive.css HTTP/1.1" 200 18533
+2023-11-20 20:53:10,725 - INFO - basehttp - "GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+2023-11-20 20:53:10,727 - INFO - basehttp - "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+2023-11-20 20:53:10,738 - INFO - basehttp - "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+2023-11-20 20:53:10,744 - INFO - basehttp - "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+2023-11-20 20:53:10,745 - INFO - basehttp - "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+2023-11-20 20:53:10,745 - INFO - basehttp - "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+2023-11-20 20:53:10,756 - INFO - basehttp - "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+2023-11-20 20:53:10,765 - INFO - basehttp - "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+2023-11-20 20:53:10,789 - INFO - basehttp - "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+2023-11-20 20:53:10,795 - INFO - basehttp - "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+2023-11-20 20:53:10,809 - INFO - basehttp - "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+2023-11-20 20:53:10,816 - INFO - basehttp - "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+2023-11-20 20:53:10,821 - INFO - basehttp - "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+2023-11-20 20:53:10,824 - INFO - basehttp - "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+2023-11-20 20:53:31,818 - INFO - basehttp - "GET /admin/django_celery_beat/periodictask/ HTTP/1.1" 200 22122
+2023-11-20 20:53:31,852 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 20:53:42,126 - INFO - basehttp - "GET /admin/django_celery_beat/intervalschedule/ HTTP/1.1" 200 16308
+2023-11-20 20:53:42,159 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 20:53:47,099 - INFO - basehttp - "GET /admin/django_celery_beat/clockedschedule/ HTTP/1.1" 200 14960
+2023-11-20 20:53:47,139 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 20:53:48,884 - INFO - basehttp - "GET /admin/django_celery_beat/solarschedule/ HTTP/1.1" 200 15131
+2023-11-20 20:53:48,921 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 20:53:50,420 - INFO - basehttp - "GET /admin/django_celery_beat/crontabschedule/ HTTP/1.1" 200 16430
+2023-11-20 20:53:50,452 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 20:53:58,462 - INFO - basehttp - "GET /admin/auth/user/ HTTP/1.1" 200 22865
+2023-11-20 20:53:58,495 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 20:53:58,513 - INFO - basehttp - "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+2023-11-20 20:54:04,697 - INFO - basehttp - "GET /admin/auth/user/1/change/ HTTP/1.1" 200 36648
+2023-11-20 20:54:04,760 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 20:54:04,765 - INFO - basehttp - "GET /static/admin/css/forms.css HTTP/1.1" 200 9047
+2023-11-20 20:54:04,774 - INFO - basehttp - "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+2023-11-20 20:54:04,775 - INFO - basehttp - "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15292
+2023-11-20 20:54:04,776 - INFO - basehttp - "GET /static/admin/js/calendar.js HTTP/1.1" 200 8466
+2023-11-20 20:54:04,779 - INFO - basehttp - "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+2023-11-20 20:54:04,804 - INFO - basehttp - "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+2023-11-20 20:54:04,807 - INFO - basehttp - "GET /static/admin/css/widgets.css HTTP/1.1" 200 11900
+2023-11-20 20:54:04,829 - INFO - basehttp - "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+2023-11-20 20:54:04,894 - INFO - basehttp - "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+2023-11-20 20:54:04,895 - INFO - basehttp - "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+2023-11-20 20:54:04,897 - INFO - basehttp - "GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+2023-11-20 20:54:04,897 - INFO - basehttp - "GET /static/admin/img/icon-unknown-alt.svg HTTP/1.1" 200 655
+2023-11-20 20:54:04,904 - INFO - basehttp - "GET /static/admin/img/icon-unknown.svg HTTP/1.1" 200 655
+2023-11-20 20:54:24,014 - INFO - basehttp - "POST /admin/auth/user/1/change/ HTTP/1.1" 200 36865
+2023-11-20 20:54:24,048 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 20:54:58,591 - INFO - basehttp - "POST /admin/auth/user/1/change/ HTTP/1.1" 302 0
+2023-11-20 20:54:58,621 - INFO - basehttp - "GET /admin/auth/user/ HTTP/1.1" 200 23104
+2023-11-20 20:54:58,661 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 20:55:51,779 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 20:55:52,944 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:55:55,137 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 20:55:55,252 - INFO - basehttp - "GET /static/news/css/styles.css HTTP/1.1" 200 3481
+2023-11-20 20:55:55,277 - INFO - basehttp - "GET /static/news/images/fon-menu.png HTTP/1.1" 200 760361
+2023-11-20 20:55:55,285 - INFO - basehttp - "GET /static/news/images/fon-main.jpg HTTP/1.1" 200 745045
+2023-11-20 20:55:55,290 - INFO - basehttp - "GET /static/news/fonts/CormorantInfant-Bold.ttf HTTP/1.1" 200 601324
+2023-11-20 20:55:55,293 - INFO - basehttp - "GET /static/news/fonts/CormorantInfant-Regular.ttf HTTP/1.1" 200 602596
+2023-11-20 20:55:55,303 - INFO - basehttp - "GET /static/news/fonts/cour.ttf HTTP/1.1" 200 806504
+2023-11-20 20:56:03,022 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 20:56:04,108 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:56:07,437 - ERROR - basehttp - "GET /news/25 HTTP/1.1" 500 89304
+2023-11-20 20:57:47,574 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 20:57:48,777 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 20:58:14,735 - INFO - basehttp - "GET /admin/auth/user/1/change/ HTTP/1.1" 200 36747
+2023-11-20 20:58:14,772 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 20:59:37,696 - INFO - basehttp - "POST /admin/auth/user/1/change/ HTTP/1.1" 302 0
+2023-11-20 20:59:37,739 - INFO - basehttp - "GET /admin/auth/user/ HTTP/1.1" 200 23108
+2023-11-20 20:59:37,780 - INFO - basehttp - "GET /admin/jsi18n/ HTTP/1.1" 200 16066
+2023-11-20 21:01:55,025 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-11-20 21:01:56,104 - INFO - autoreload - Watching for file changes with StatReloader
+2023-11-20 21:02:30,114 - INFO - basehttp - "GET /news/ HTTP/1.1" 200 21588
+2023-11-20 21:02:48,009 - ERROR - basehttp - "GET /news/25 HTTP/1.1" 500 145
+2023-11-20 21:16:13,945 - INFO - autoreload - C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py changed, reloading.
+2023-11-20 21:16:15,190 - INFO - autoreload - Watching for file changes with StatReloader
