@@ -29,3 +29,19 @@ Traceback (most recent call last):
   File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
 ModuleNotFoundError: No module named 'ksm'
 2023-11-22 09:47:51,445 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\servers\basehttp.py - None - "POST /news/category/ HTTP/1.1" 500 145
+2023-11-22 11:45:45,860 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\log.py - (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('news1/post.html'), <traceback object at 0x000002995AF3A8C0>) - Internal Server Error: /news/25
+Traceback (most recent call last):
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: news1/post.html
+2023-11-22 11:45:46,757 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\servers\basehttp.py - None - "GET /news/25 HTTP/1.1" 500 90615

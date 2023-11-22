@@ -60,6 +60,11 @@ INSTALLED_APPS = [
 ]
 
 DEFAULT_FROM_EMAIL = 'ssp-serg@yandex.ru'  # здесь указываем уже свою ПОЛНУЮ почту, с которой будут отправляться письма
+SERVER_EMAIL = 'ssp-serg@yandex.ru'
+
+ADMINS = (
+    ('admin', 'ksm.serg1983@gmail.com'),
+)
 
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'  # тем самым указав Celery использовать новый планировщик задач
 
@@ -214,7 +219,7 @@ EMAIL_HOST_USER = 'ssp-serg'  # ваше имя пользователя
 EMAIL_HOST_PASSWORD = ''  # пароль от почты
 EMAIL_USE_SSL = True  # Яндекс использует ssl
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 
 # Логирование
 LOGGING = {
@@ -299,9 +304,10 @@ LOGGING = {
         },
         'mail_admins': {
             'level': 'ERROR',
-            'filters': ['require_debug_true'],
+            'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler',
             'formatter': 'mail_error',
+            'include_html': True,
         }
     },
     'loggers': {
