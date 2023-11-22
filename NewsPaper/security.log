@@ -1,0 +1,2 @@
+2023-11-22 10:33:39,875 - WARNING - log - Forbidden (CSRF token from POST incorrect.): /news/category/
+2023-11-22 10:36:01,338 - WARNING - log - Forbidden (CSRF token from POST incorrect.): /news/category/

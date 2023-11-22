@@ -1,50 +1,4 @@
-2023-11-20 17:53:14,785 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\log.py - (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('new/news_edit.html'), <traceback object at 0x000001B0BBCA17C0>) - Internal Server Error: /news/news/create/
-Traceback (most recent call last):
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
-    response = response.render()
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 114, in render
-    self.content = self.rendered_content
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
-    template = self.resolve_template(self.template_name)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
-    return select_template(template, using=self.using)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\loader.py", line 47, in select_template
-    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
-django.template.exceptions.TemplateDoesNotExist: new/news_edit.html
-2023-11-20 17:55:35,623 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\log.py - (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('new/news_edit.html'), <traceback object at 0x000001588F83E800>) - Internal Server Error: /news/news/create/
-Traceback (most recent call last):
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
-    response = response.render()
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 114, in render
-    self.content = self.rendered_content
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
-    template = self.resolve_template(self.template_name)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
-    return select_template(template, using=self.using)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\loader.py", line 47, in select_template
-    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
-django.template.exceptions.TemplateDoesNotExist: new/news_edit.html
-2023-11-20 20:25:08,379 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\log.py - (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('news1/news_edit.html'), <traceback object at 0x000002883F1ABDC0>) - Internal Server Error: /news/news/create/
-Traceback (most recent call last):
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
-    response = response.render()
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 114, in render
-    self.content = self.rendered_content
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
-    template = self.resolve_template(self.template_name)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
-    return select_template(template, using=self.using)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\loader.py", line 47, in select_template
-    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
-django.template.exceptions.TemplateDoesNotExist: news1/news_edit.html
-2023-11-20 20:25:08,381 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\servers\basehttp.py - None - "GET /news/news/create/ HTTP/1.1" 500 88851
-2023-11-20 20:35:43,491 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\log.py - (<class 'KeyError'>, KeyError('title'), <traceback object at 0x0000023F853B0100>) - Internal Server Error: /news/category/
+2023-11-22 09:47:51,404 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\log.py - (<class 'ModuleNotFoundError'>, ModuleNotFoundError("No module named 'ksm'"), <traceback object at 0x0000021A73B8CE80>) - Internal Server Error: /news/category/
 Traceback (most recent call last):
   File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
     response = get_response(request)
@@ -52,79 +6,26 @@ Traceback (most recent call last):
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
   File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\contrib\auth\decorators.py", line 23, in _wrapper_view
     return view_func(request, *args, **kwargs)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py", line 262, in check_category
-    for i in cat_list['title']:
-KeyError: 'title'
-2023-11-20 20:35:43,492 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\servers\basehttp.py - None - "POST /news/category/ HTTP/1.1" 500 81201
-2023-11-20 20:36:56,980 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\log.py - (<class 'django.core.exceptions.FieldError'>, FieldError("Cannot resolve keyword 'date_create' into field. Choices are: categories, id, post, postcategory, title"), <traceback object at 0x0000023F8502A900>) - Internal Server Error: /news/
-Traceback (most recent call last):
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
-    response = view_func(request, *args, **kwargs)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\views\generic\base.py", line 104, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\views\generic\base.py", line 143, in dispatch
-    return handler(request, *args, **kwargs)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\views\generic\list.py", line 154, in get
-    self.object_list = self.get_queryset()
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\views\generic\list.py", line 45, in get_queryset
-    queryset = queryset.order_by(*ordering)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\db\models\query.py", line 1659, in order_by
-    obj.query.add_ordering(*field_names)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\db\models\sql\query.py", line 2221, in add_ordering
-    self.names_to_path(item.split(LOOKUP_SEP), self.model._meta)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\db\models\sql\query.py", line 1724, in names_to_path
-    raise FieldError(
-django.core.exceptions.FieldError: Cannot resolve keyword 'date_create' into field. Choices are: categories, id, post, postcategory, title
-2023-11-20 20:36:56,984 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\servers\basehttp.py - None - "GET /news/ HTTP/1.1" 500 107139
-2023-11-20 20:49:55,658 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\log.py - (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('news1/news.html, news/post_list.html'), <traceback object at 0x000002B4B0B0C480>) - Internal Server Error: /news/
-Traceback (most recent call last):
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
-    response = response.render()
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 114, in render
-    self.content = self.rendered_content
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
-    template = self.resolve_template(self.template_name)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
-    return select_template(template, using=self.using)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\loader.py", line 47, in select_template
-    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
-django.template.exceptions.TemplateDoesNotExist: news1/news.html, news/post_list.html
-2023-11-20 20:49:55,688 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\servers\basehttp.py - None - "GET /news/ HTTP/1.1" 500 92220
-2023-11-20 20:56:07,411 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\log.py - (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('news1/post.html'), <traceback object at 0x000002259EBE4C80>) - Internal Server Error: /news/25
-Traceback (most recent call last):
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
-    response = response.render()
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 114, in render
-    self.content = self.rendered_content
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
-    template = self.resolve_template(self.template_name)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
-    return select_template(template, using=self.using)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\loader.py", line 47, in select_template
-    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
-django.template.exceptions.TemplateDoesNotExist: news1/post.html
-2023-11-20 20:56:07,437 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\servers\basehttp.py - None - "GET /news/25 HTTP/1.1" 500 89304
-2023-11-20 21:02:47,984 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\log.py - (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('news1/post.html'), <traceback object at 0x0000020C1750B780>) - Internal Server Error: /news/25
-Traceback (most recent call last):
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
-    response = response.render()
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 114, in render
-    self.content = self.rendered_content
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
-    template = self.resolve_template(self.template_name)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
-    return select_template(template, using=self.using)
-  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\template\loader.py", line 47, in select_template
-    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
-django.template.exceptions.TemplateDoesNotExist: news1/post.html
-2023-11-20 21:02:48,009 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\servers\basehttp.py - None - "GET /news/25 HTTP/1.1" 500 145
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py", line 276, in check_category
+    s_mail(user, cat_d)
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\NewsPaper\news\views.py", line 246, in s_mail
+    send_mail(
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\mail\__init__.py", line 76, in send_mail
+    connection = connection or get_connection(
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\mail\__init__.py", line 50, in get_connection
+    klass = import_string(backend or settings.EMAIL_BACKEND)
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "C:\Users\Dom\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 992, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'ksm'
+2023-11-22 09:47:51,445 - ERROR - C:\Users\Dom\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\servers\basehttp.py - None - "POST /news/category/ HTTP/1.1" 500 145

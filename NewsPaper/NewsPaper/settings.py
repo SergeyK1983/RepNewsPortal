@@ -24,7 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-yfzrw7x^)33qy2t&jd#!ei#g7(+2l5abd_-z9vz%l(1&ux@@d%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False  # В боевом режиме поставить на False, чтобы не видеть отладочную инфу при ошибках
+DEBUG = True  # В боевом режиме поставить на False, чтобы не видеть отладочную инфу при ошибках
+# при DEBUG=False django как-то меняет обращение к статическим файлам (каталоги static/), надо переопределить
+# переменную STATICFILES_DIRS
 
 ALLOWED_HOSTS = ['127.0.0.1']  # Тут наш сайт: www:something.ru или IP адрес, пока ХЗ.
 
@@ -194,7 +196,7 @@ USE_TZ = False  # True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'  # название папки в пути для статических файлов, префикс URL-адреса
+STATIC_URL = '/static/'  # название папки в пути для статических файлов, префикс URL-адреса
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # путь к общей папке static, используемой реальным веб-сервером
 STATICFILES_DIRS = []  # [BASE_DIR / 'static']  # список путей для нестандартных папок static
 
@@ -209,8 +211,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'ssp-serg'  # ваше имя пользователя
-EMAIL_HOST_PASSWORD = 'Pas1104191532!'  # пароль от почты
+EMAIL_HOST_PASSWORD = ''  # пароль от почты
 EMAIL_USE_SSL = True  # Яндекс использует ssl
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 
 # Логирование
 LOGGING = {
@@ -250,16 +254,33 @@ LOGGING = {
         'require_debug_true': {
             '()': 'django.utils.log.RequireDebugTrue',  # фильтр, который пропускает записи только в случае, когда DEBUG = True
         },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',  # фильтр, который пропускает записи только в случае, когда DEBUG = False
+        },
     },
     # Обработчики
     'handlers': {
-        'console': {
+        'console-debug': {
             'level': 'DEBUG',
+            'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',  # для вывода в консоль
             'formatter': 'console_debug',
         },
+        'console-warning': {
+            'level': 'WARNING',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'console_warning',
+        },
+        'console-error': {
+            'level': 'ERROR',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'console_error',
+        },
         'file_general.log': {
             'level': 'INFO',
+            'filters': ['require_debug_false'],
             'class': 'logging.FileHandler',
             'filename': BASE_DIR / 'general.log',
             'formatter': 'general_log_info',
@@ -278,6 +299,7 @@ LOGGING = {
         },
         'mail_admins': {
             'level': 'ERROR',
+            'filters': ['require_debug_true'],
             'class': 'django.utils.log.AdminEmailHandler',
             'formatter': 'mail_error',
         }
@@ -286,8 +308,8 @@ LOGGING = {
         # Логгер верхнего уровня, который принимает все сообщения, но непосредственно в него ничего не записывается.
         # Все сообщения, поступающие в него распределяются по дочерним логгерам.
         'django': {
-            'handlers': ['console', 'file_general.log'],
-            'level': 'INFO',
+            'handlers': ['console-debug', 'console-warning', 'console-error', 'file_general.log'],
+            # 'level': 'INFO',
             'propagate': True,
         },
         # Логгер, принимающий все сообщения, связанные с ошибками обработки запроса.
